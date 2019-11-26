@@ -1,3 +1,9 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/Stupot83/AceBook?style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Stupot83/AceBook?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues-raw/Stupot83/AceBook?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Stupot83/AceBook)
+![Maintenance](https://img.shields.io/maintenance/yes/2019?style=for-the-badge)
+
 # AceBook
 
 ## User Stories
