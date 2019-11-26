@@ -12,4 +12,10 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Calculator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AceBook\AceBook.csproj" />
+  </ItemGroup>
 </Project>
