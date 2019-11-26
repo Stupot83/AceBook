@@ -19,7 +19,7 @@ namespace AceBookTests
         public void ShouldAddTwoNumbers()
         {
             int expectedResult = sut.Add(10, 8);
-            Assert.That(expectedResult, Is.EqualTo(18));
+            Assert.That(expectedResult, Is.EqualTo(17));
         }
 
         [Test]
