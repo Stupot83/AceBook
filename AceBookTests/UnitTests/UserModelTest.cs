@@ -81,10 +81,11 @@ namespace AceBookTests.UnitTests
         }
 
         [Test]
-        [Category("register")]
+        [Category("registration")]
         public void RegistersAUser()
         {
-
+            User newUser = User.register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
+            Assert.That(newUser, Is.InstanceOf<User>());
         }
     }
 }
