@@ -24,6 +24,7 @@ namespace AceBookTests.UnitTests
             Assert.That(user, Is.InstanceOf<User>());
         }
 
+        [Test]
         public void HasFirstName()
         {
             Assert.AreEqual(user.FirstName, "Joseph");
