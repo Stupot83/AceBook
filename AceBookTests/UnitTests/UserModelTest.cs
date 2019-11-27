@@ -16,7 +16,7 @@ namespace AceBookTests.UnitTests
                 FirstName = "Joseph",
                 LastName = "Timothy",
                 Email = "JosephTimothy@email.com",
-                password = "$upa$ecret"
+                Password = "$upa$ecret"
             };
         }
 
