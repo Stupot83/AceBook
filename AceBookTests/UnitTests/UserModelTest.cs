@@ -88,5 +88,12 @@ namespace AceBookTests.UnitTests
             User newUser = User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
             Assert.That(newUser, Is.InstanceOf<User>());
         }
+
+        [Test]
+        public void PasswordsDoNotMatch()
+        {
+            string notConfirmPassword = "jdsdfakdsksdaj;dsafj;";
+            Assert.That(() => { User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender); }, Throws.TypeOf<System.Exception>());
+        }
     }
 }
