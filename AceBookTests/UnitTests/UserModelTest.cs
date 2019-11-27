@@ -93,7 +93,9 @@ namespace AceBookTests.UnitTests
         public void PasswordsDoNotMatch()
         {
             string notConfirmPassword = "jdsdfakdsksdaj;dsafj;";
-            Assert.That(() => { User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender); }, Throws.TypeOf<System.Exception>());
+            Assert.That(() => {
+                User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender); }, 
+                Throws.TypeOf<System.Exception>());
         }
     }
 }
