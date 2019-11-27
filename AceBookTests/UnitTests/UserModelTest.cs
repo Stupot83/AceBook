@@ -17,7 +17,8 @@ namespace AceBookTests.UnitTests
                 LastName = "Timothy",
                 Email = "JosephTimothy@email.com",
                 Password = "$upa$ecret",
-                PhoneNumber = "1234567890"
+                PhoneNumber = "1234567890",
+                BirthDate = "27/06/2001"
             };
         }
 
@@ -56,6 +57,11 @@ namespace AceBookTests.UnitTests
         public void HasPhoneNumber() 
         {
             Assert.AreEqual(user.PhoneNumber, "1234567890");
+        }
+
+        public void HasBirthDate()
+        {
+            Assert.AreEqual(user.BirthDate, "27/06/2001");
         }
     }
 }
