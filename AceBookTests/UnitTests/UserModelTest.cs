@@ -18,7 +18,8 @@ namespace AceBookTests.UnitTests
                 Email = "JosephTimothy@email.com",
                 Password = "$upa$ecret",
                 PhoneNumber = "1234567890",
-                BirthDate = "27/06/2001"
+                BirthDate = "27/06/2001",
+                Gender = "Frube"
             };
         }
 
@@ -63,6 +64,12 @@ namespace AceBookTests.UnitTests
         public void HasBirthDate()
         {
             Assert.AreEqual(user.BirthDate, "27/06/2001");
+        }
+
+        [Test]
+        public void HasGender()
+        {
+            Assert.AreEqual(user.Gender, "Frube");
         }
     }
 }
