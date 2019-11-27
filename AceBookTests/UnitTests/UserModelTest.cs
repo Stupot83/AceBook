@@ -12,6 +12,7 @@ namespace AceBookTests.UnitTests
         string lastName = "Timothy";
         string email = "JosephTimothy@email.com";
         string password = "$upa$ecret";
+        string confirmPassword = "$upa$ecret";
         string phoneNumber = "1234567890";
         string birthDate = "27/06/2001";
         string gender = "Frube";
@@ -84,7 +85,7 @@ namespace AceBookTests.UnitTests
         [Category("registration")]
         public void RegistersAUser()
         {
-            User newUser = User.register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
+            User newUser = User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
             Assert.That(newUser, Is.InstanceOf<User>());
         }
     }
