@@ -11,14 +11,24 @@ namespace AceBookTests.UnitTests
         [SetUp]
         public void TestSetup()
         {
-            user = new User();
+            user = new User
+            {
+                FirstName = "Joseph"
+            };
         }
 
         [Test]
-
+        [Category("setup")]
         public void ShouldBeAnInstanceOfUser()
         {
             Assert.That(user, Is.InstanceOf<User>());
         }
+
+        public void HasFirstName()
+        {
+            Assert.AreEqual(user.FirstName, "Joseph");
+        }
+
+
     }
 }
