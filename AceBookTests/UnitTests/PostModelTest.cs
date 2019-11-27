@@ -18,7 +18,7 @@ namespace AceBookTests.UnitTests
             post = new Post
             {
                 UserId = userId,
-                message = message,
+                Message = message,
                 DatePosted = datePosted
             };
         }
@@ -27,7 +27,13 @@ namespace AceBookTests.UnitTests
         [Category("setup")]
         public void ShouldBeAnInstanceOfPost()
         {
-            Assert.That(post, Is.InstanceOf<PostModelTest>());
+            Assert.That(post, Is.InstanceOf<Post>());
+        }
+
+        [Test]
+        public void HasUserId()
+        {
+            Assert.AreEqual(post.UserId, userId);
         }
     }
 
