@@ -8,18 +8,26 @@ namespace AceBookTests.UnitTests
     {
         User user;
 
+        string firstName = "Joseph";
+        string lastName = "Timothy";
+        string email = "JosephTimothy@email.com";
+        string password = "$upa$ecret";
+        string phoneNumber = "1234567890";
+        string birthDate = "27/06/2001";
+        string gender = "Frube";
+
         [SetUp]
         public void TestSetup()
         {
             user = new User
             {
-                FirstName = "Joseph",
-                LastName = "Timothy",
-                Email = "JosephTimothy@email.com",
-                Password = "$upa$ecret",
-                PhoneNumber = "1234567890",
-                BirthDate = "27/06/2001",
-                Gender = "Frube"
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Password = password,
+                PhoneNumber = phoneNumber,
+                BirthDate = birthDate,
+                Gender = gender
             };
         }
 
@@ -33,43 +41,50 @@ namespace AceBookTests.UnitTests
         [Test]
         public void HasFirstName()
         {
-            Assert.AreEqual(user.FirstName, "Joseph");
+            Assert.AreEqual(user.FirstName, firstName);
         }
 
         [Test]
         public void HasLastName()
         {
-            Assert.AreEqual(user.LastName, "Timothy");
+            Assert.AreEqual(user.LastName, lastName);
         }
 
         [Test]
         public void HasEmail()
         {
-            Assert.AreEqual(user.Email, "JosephTimothy@email.com");
+            Assert.AreEqual(user.Email, email);
         }
 
         [Test]
         public void HasPassword()
         {
-            Assert.AreEqual(user.Password, "$upa$ecret");
+            Assert.AreEqual(user.Password, password);
         }
 
         [Test]
-        public void HasPhoneNumber() 
+        public void HasPhoneNumber()
         {
-            Assert.AreEqual(user.PhoneNumber, "1234567890");
+            Assert.AreEqual(user.PhoneNumber, phoneNumber);
         }
 
         [Test]
         public void HasBirthDate()
         {
-            Assert.AreEqual(user.BirthDate, "27/06/2001");
+            Assert.AreEqual(user.BirthDate, birthDate);
         }
 
         [Test]
         public void HasGender()
         {
-            Assert.AreEqual(user.Gender, "Frube");
+            Assert.AreEqual(user.Gender, gender);
+        }
+
+        [Test]
+        [Category("register")]
+        public void RegistersAUser()
+        {
+
         }
     }
 }
