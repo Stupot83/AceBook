@@ -15,7 +15,8 @@ namespace AceBookTests.UnitTests
             {
                 FirstName = "Joseph",
                 LastName = "Timothy",
-                Email = "JosephTimothy@email.com"
+                Email = "JosephTimothy@email.com",
+                password = "$upa$ecret"
             };
         }
 
@@ -42,6 +43,12 @@ namespace AceBookTests.UnitTests
         public void HasEmail()
         {
             Assert.AreEqual(user.Email, "JosephTimothy@email.com");
+        }
+
+        [Test]
+        public void HasPassword()
+        {
+            Assert.AreEqual(user.Password, "$upa$ecret");
         }
     }
 }
