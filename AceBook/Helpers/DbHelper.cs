@@ -12,20 +12,20 @@ namespace AceBook.Helpers
 {
     public class DbHelper
     {
-        private static IMongoCollection<BsonDocument> ConnectToDB(string AceBookDB, string collectionName)
+        private static IMongoCollection<BsonDocument> ConnectToDB(string dbName, string collectionName)
         {
             var connectionString = "mongodb://localhost:27017";
 
             var client = new MongoClient(MongoUrl.Create(connectionString));
 
-            var database = client.GetDatabase(AceBookDB);
+            var database = client.GetDatabase(dbName);
 
             return database.GetCollection<BsonDocument>(collectionName);
         }
 
         public static void RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber, string birthDate, string gender)
         {
-            var collection = ConnectToDB("AceBookDb", "user");
+            var collection = ConnectToDB("AceBookDB", "user");
             var document = new BsonDocument
             {
                 { "firstName", firstName },
@@ -38,6 +38,24 @@ namespace AceBook.Helpers
             };
 
             collection.InsertOneAsync(document);
+        }
+
+        public static bool GetUser(string enteredEmail, string enteredPassword)
+        {
+            var collection = ConnectToDB("AceBookDB", "user");
+            try
+            {
+                var user = collection.Find(new BsonDocument("email", enteredEmail)).First();
+                if (PasswordHasher.Verify(enteredPassword, (string)user.GetValue("password")))
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return false;
         }
     }
 }
