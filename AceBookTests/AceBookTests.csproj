@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Compile Remove="Calculator.cs" />
+    <Compile Remove="PostModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AceBook\AceBook.csproj" />
