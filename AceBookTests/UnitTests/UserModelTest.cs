@@ -14,7 +14,8 @@ namespace AceBookTests.UnitTests
             user = new User
             {
                 FirstName = "Joseph",
-                LastName = "Timothy"
+                LastName = "Timothy",
+                Email = "JosephTimothy@email.com"
             };
         }
 
@@ -35,6 +36,12 @@ namespace AceBookTests.UnitTests
         public void HasLastName()
         {
             Assert.AreEqual(user.LastName, "Timothy");
+        }
+
+        [Test]
+        public void HasEmail()
+        {
+            Assert.AreEqual(user.Email, "JosephTimothy@email.com");
         }
     }
 }
