@@ -26,7 +26,7 @@ namespace AceBook.Models
                     Gender = gender
                 };
             }
-            throw new System.Exception("Password do not match");
+            throw new Exception("Password do not match");
         }
 
         private static bool CheckPassword(string password, string confirmPassword)

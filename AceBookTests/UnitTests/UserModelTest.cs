@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using AceBook.Models;
+using System;
 
 namespace AceBookTests.UnitTests
 {
@@ -95,7 +96,7 @@ namespace AceBookTests.UnitTests
             string notConfirmPassword = "jdsdfakdsksdaj;dsafj;";
             Assert.That(() => {
                 User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender); }, 
-                Throws.TypeOf<System.Exception>());
+                Throws.TypeOf<Exception>());
         }
     }
 }
