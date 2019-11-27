@@ -37,9 +37,15 @@ namespace AceBookTests.UnitTests
         }
 
         [Test]
-        public void Message()
+        public void HasMessage()
         {
             Assert.AreEqual(post.Message, message);
+        }
+
+        [Test]
+        public void HasDatePosted()
+        {
+            Assert.AreEqual(post.DatePosted, datePosted);
         }
     }
 
