@@ -35,6 +35,12 @@ namespace AceBookTests.UnitTests
         {
             Assert.AreEqual(post.UserId, userId);
         }
+
+        [Test]
+        public void Message()
+        {
+            Assert.AreEqual(post.Message, message);
+        }
     }
 
 }
