@@ -59,6 +59,7 @@ namespace AceBookTests.UnitTests
             Assert.AreEqual(user.PhoneNumber, "1234567890");
         }
 
+        [Test]
         public void HasBirthDate()
         {
             Assert.AreEqual(user.BirthDate, "27/06/2001");
