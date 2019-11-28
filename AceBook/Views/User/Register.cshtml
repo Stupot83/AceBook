@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Register";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/register.css" />
+}
+
+<div class="col-md-8 offset-md-2">
+    <h1 id="title">Register</h1>
+    <form id="register" method="post">
+        <div class="form-group">
+            <input id="firstName" name="firstName" type="text" placeholder="First Name..."/>
+        </div>
+        <div class="form-group">
+            <input id="lastName" name="lastName" type="text" placeholder="Last Name.."/>
+        </div>
+        <div class="form-group">
+            <input id="email" name="email" type="text" placeholder="Email..."/>
+        </div>
+        <div class="form-group">
+            <input id="password" name="password" type="password" placeholder="Password.."/>
+        </div>
+        <div class="form-group">
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password..."/>
+        </div>
+        <div class="form-group">
+            <input id="phoneNumber" name="phoneNumber" type="text" placeholder="Phone Number.."/>
+        </div>
+        <div class="form-group">
+            <input id="birthDate" autocomplete="off" name="birthDate" type="text" placeholder="Birth Date..." class="input-group date"/>
+        </div>
+        <div class="form-group">
+            <input id="gender" name="gender" type="text" placeholder="Gender.."/>
+        </div>
+        <input id="submit" type="submit"/>
+    </form>
+</div>
+
+@section Scripts
+{ 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('#birthDate').datepicker();
+        });
+    </script>
+}

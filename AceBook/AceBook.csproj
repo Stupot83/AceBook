@@ -17,5 +17,6 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="wwwroot\img" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
 </Project>
