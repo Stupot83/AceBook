@@ -35,7 +35,8 @@ namespace AceBook.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.Message);
+                return BadRequest();
             }
             return Redirect("/home");    
         }
