@@ -54,6 +54,10 @@ namespace AceBook
 
                 endpoints.MapControllerRoute(
                     "default",
+                    "{controller=Account}/{action=Login}");
+              
+                endpoints.MapControllerRoute(
+                    "default,
                     "{controller=User}/{action=Index}");
             });
         }
