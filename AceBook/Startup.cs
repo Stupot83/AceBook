@@ -57,7 +57,7 @@ namespace AceBook
                     "{controller=Account}/{action=Login}");
               
                 endpoints.MapControllerRoute(
-                    "default,
+                    "default",
                     "{controller=User}/{action=Index}");
             });
         }
