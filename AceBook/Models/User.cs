@@ -17,7 +17,7 @@ namespace AceBook.Models
         { 
             if (CheckPassword(password, confirmPassword))
             {
-                DbHelper.RegisterUser(firstName, lastName, email, password, phoneNumber, birthDate, gender);;
+                DbHelper.RegisterUser(firstName, lastName, email, password, phoneNumber, birthDate, gender);
                 return new User
                 {
                     FirstName = firstName,

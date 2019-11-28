@@ -57,5 +57,26 @@ namespace AceBook.Helpers
             }
             return false;
         }
+
+        public static void SetPost(string userId, string message, string datePosted)
+        {
+            var collection = ConnectToDB("AceBookDB", "post");
+            var document = new BsonDocument
+            {
+                { "userId", userId },
+                { "message", message },
+                { "datePosted", datePosted }
+            };
+
+            collection.InsertOneAsync(document);
+        }
+
+        public static BsonDocument GetPost(string postId)
+        {
+            var collection = ConnectToDB("AceBookDB", "post");
+            var post = collection.Find(new BsonDocument("_id", postId)).First();
+
+            return post;
+        }
     }
 }

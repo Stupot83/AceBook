@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using AceBook.Helpers;
 
 namespace AceBook
 {
@@ -13,6 +14,7 @@ namespace AceBook
     {
         public static void Main(string[] args)
         {
+            DbHelper.SetPost("1", "Hello", "2001");
             CreateHostBuilder(args).Build().Run();
         }
 
