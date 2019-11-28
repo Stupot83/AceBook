@@ -33,7 +33,7 @@ namespace AceBook.Controllers
                 Console.WriteLine(newUser.Email);
                 Console.WriteLine("Hurray!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
