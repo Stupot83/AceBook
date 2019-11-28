@@ -8,10 +8,20 @@ namespace AceBookTests.UnitTests
     [TestFixture]
     public class AccountConttollerTest
     {
-        [Test]
-        public void TestLoginView()
+
+        private AccountController controller;
+
+
+        [SetUp]
+        public void TestSetup()
         {
-            var controller = new AccountController();
+            controller = new AccountController();
+        }
+
+
+        [Test]
+        public void GetLogin()
+        {
             var result = controller.Login() as ViewResult;
             Assert.AreEqual("Login", result.ViewName);
         }
