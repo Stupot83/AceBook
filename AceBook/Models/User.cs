@@ -1,4 +1,6 @@
 ﻿using System;
+using AceBook.Helpers;
+
 namespace AceBook.Models
 {
     public class User
@@ -15,6 +17,7 @@ namespace AceBook.Models
         { 
             if (CheckPassword(password, confirmPassword))
             {
+                DbHelper.RegisterUser(firstName, lastName, email, password, phoneNumber, birthDate, gender);;
                 return new User
                 {
                     FirstName = firstName,
