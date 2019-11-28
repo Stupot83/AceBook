@@ -51,6 +51,10 @@ namespace AceBook
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    "default",
+                    "{controller=User}/{action=Index}");
             });
         }
     }
