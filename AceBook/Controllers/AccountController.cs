@@ -3,11 +3,11 @@ using AceBook.Helpers;
 
 namespace AceBook.Controllers
 {
-    public class LoginController : Controller
+    public class AccountController : Controller
     {
         public IActionResult Login()
         {
-            return View();
+            return View("Login");
         }
 
         public IActionResult LoginUser(string email, string password)
@@ -17,7 +17,7 @@ namespace AceBook.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("Login", "Account");
         }
 
         public IActionResult LogOut()
