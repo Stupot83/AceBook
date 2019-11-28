@@ -20,15 +20,19 @@ namespace AceBook.Controllers
         {
             try
             {
+                if (String.IsNullOrEmpty(message))
+                {
+                    throw new Exception();
+                }
                 Models.Post newPost = Models.Post.PostStatus(userId, message, datePosted);
                 Console.WriteLine(newPost.Message);
                 Console.WriteLine("Hurray!");
+                return StatusCode(201);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return BadRequest();
             }
-            return Ok();
         }
     }
 }

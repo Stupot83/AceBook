@@ -32,7 +32,7 @@ namespace AceBookTests.UnitTests
         }
 
         [Test]
-        public void PostRegisterSuccess()
+        public void UserRegisterSuccess()
         {
             var result = controller.Register(
                 firstName,
@@ -47,7 +47,7 @@ namespace AceBookTests.UnitTests
         }
 
         [Test]
-        public void PostRegisterFail()
+        public void UserRegisterFail()
         {
             var result = controller.Register(
                 firstName,
