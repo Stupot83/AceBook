@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace AceBookTests.UnitTests
+namespace AceBookTests.FeatureTests
 {
     [TestFixture]
 
