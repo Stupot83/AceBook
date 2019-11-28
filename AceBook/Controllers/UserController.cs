@@ -13,7 +13,7 @@ namespace AceBook.Controllers
 
         public IActionResult Register()
         {
-            return View();
+            return View("Register");
         }
 
         [HttpPost]
@@ -35,7 +35,6 @@ namespace AceBook.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return BadRequest();
             }
             return Redirect("/home");    
