@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using AceBook.Helpers;
+using Microsoft.AspNetCore.Http;
+using System;
 
 namespace AceBook.Controllers
 {
@@ -12,12 +13,18 @@ namespace AceBook.Controllers
 
         public IActionResult LoginUser(string email, string password)
         {
-            if (DbHelper.GetUser(email, password))
+            try
             {
-                return RedirectToAction("Index", "Home");
-            }
+                var user = Models.User.AuthenticateAndGet(email, password);
 
-            return RedirectToAction("Login", "Account");
+                HttpContext.Session.SetString("name", $"{user.FirstName} {user.LastName}");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult LogOut()

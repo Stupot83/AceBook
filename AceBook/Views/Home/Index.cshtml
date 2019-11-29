@@ -1,9 +1,18 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@{
     ViewData["Title"] = "Home Page";
+    string name = Context.Session.GetString("name");
 }
 
-<div class="text-center">
-    <h1 class="display-6">Welcome to</h1>
-    <h2 class="display-1">Acebook</h2>
-    <img class="img-fluid" src="img/holding-hands.png" />
-</div>
+@if (name != null)
+{
+    <h1>Hello @name here are posts...</h1>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-6">Welcome to</h1>
+        <h2 class="display-1">Acebook</h2>
+        <img class="img-fluid" src="img/holding-hands.png" />
+    </div>
+}

@@ -40,22 +40,10 @@ namespace AceBook.Helpers
             collection.InsertOneAsync(document);
         }
 
-        public static bool GetUser(string enteredEmail, string enteredPassword)
+        public static BsonDocument GetUserByEmail(string email)
         {
             var collection = ConnectToDB("AceBookDB", "user");
-            try
-            {
-                var user = collection.Find(new BsonDocument("email", enteredEmail)).First();
-                if (PasswordHasher.Verify(enteredPassword, (string)user.GetValue("password")))
-                {
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return false;
+            return collection.Find(new BsonDocument("email", email)).First();
         }
 
         public static void SetPost(string userId, string message, string datePosted)
@@ -74,9 +62,7 @@ namespace AceBook.Helpers
         public static BsonDocument GetPost(string postId)
         {
             var collection = ConnectToDB("AceBookDB", "post");
-            var post = collection.Find(new BsonDocument("_id", postId)).First();
-
-            return post;
+            return collection.Find(new BsonDocument("_id", postId)).First();
         }
     }
 }
