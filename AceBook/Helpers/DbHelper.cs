@@ -59,10 +59,10 @@ namespace AceBook.Helpers
             collection.InsertOneAsync(document);
         }
 
-        public static BsonDocument GetPost(string postId)
+        public static List<BsonDocument> GetPost()
         {
             var collection = ConnectToDB("AceBookDB", "post");
-            return collection.Find(new BsonDocument("_id", postId)).First();
+            return collection.Find(new BsonDocument()).ToList();
         }
     }
 }
