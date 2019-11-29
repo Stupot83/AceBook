@@ -53,6 +53,21 @@ namespace AceBook.Models
             throw new Exception("Could not authenticate user");
         }
 
+        public static User GetUserByEmail(string email)
+        {
+            var data = DbHelper.GetUserByEmail(email);
+
+            return new User
+            {
+                FirstName = (string)data.GetValue("firstName"),
+                LastName = (string)data.GetValue("lastName"),
+                Email = (string)data.GetValue("email"),
+                PhoneNumber = (string)data.GetValue("phoneNumber"),
+                BirthDate = (string)data.GetValue("birthDate"),
+                Gender = (string)data.GetValue("gender")
+            };            
+        }
+
         private static bool CheckPassword(string password, string confirmPassword)
         { return (password == confirmPassword); }
     }

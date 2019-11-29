@@ -16,6 +16,11 @@ namespace AceBook.Controllers
             return View("Register");
         }
 
+        public IActionResult Profile()
+        {
+            return View("Profile");
+        }
+
         [HttpPost]
         public IActionResult Register(
             string firstName,
