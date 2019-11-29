@@ -17,7 +17,7 @@ namespace AceBook.Controllers
             {
                 var user = Models.User.AuthenticateAndGet(email, password);
 
-                HttpContext.Session.SetString("name", $"{user.FirstName} {user.LastName}");
+                HttpContext.Session.SetString("email", email);
             }
             catch (Exception)
             {

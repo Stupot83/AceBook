@@ -1,10 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Home Page";
-    string name = Context.Session.GetString("name");
+    string email = Context.Session.GetString("email");
 }
 
-@if (name != null)
+@if (email != null)
 {
     <form method="post" action="post/PostStatus">
         <input id="PostInput" placeholder="wys, wagwan..." type="text" />

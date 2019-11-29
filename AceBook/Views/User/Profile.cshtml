@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Register";
+    var email = Context.Session.GetString("email");
+    var user = AceBook.Models.User.GetUserByEmail(email);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/register.css" />
+}
+
+<div class="col-md-8 offset-md-2">
+    <h1 id="title">Profile</h1>
+    <form id="register" method="post">
+        <div class="form-group">
+            <label for="firstName">
+                First Name
+            </label>
+            <input id="firstName" name="firstName" type="text" value="@user.FirstName"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName">
+                Last Name
+            </label>
+            <input id="lastName" name="lastName" type="text" value="@user.LastName"/>
+        </div>
+        <div class="form-group">
+            <label for="email">
+                Email
+            </label>
+            <input id="email" name="email" type="text" value="@user.Email"/>
+        </div>
+        <div class="form-group">
+            <label for="birthDate">
+                Date of Birth
+            </label>
+            <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@user.BirthDate" class="input-group date"/>
+        </div>
+        <div class="form-group">
+            <label for="gender">
+                Gender
+            </label>
+            <input id="gender" name="gender" value="@user.Gender" type="text"/>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">
+                Phone Number
+            </label>
+            <input id="phoneNumber" name="phoneNumber" value="@user.PhoneNumber" type="text"/>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts
+{ 
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(() => {
+            $('#birthDate').datepicker();
+        });
+    </script>
+}
