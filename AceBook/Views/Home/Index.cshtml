@@ -6,7 +6,10 @@
 
 @if (name != null)
 {
-    <h1>Hello @name here are posts...</h1>
+    <form method="post" action="/post/new">
+        <input id="PostInput" placeholder="wys/wagwan..." type="text" />
+        <input type ="submit" />
+    </form>
 }
 else
 {
