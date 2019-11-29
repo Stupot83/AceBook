@@ -7,17 +7,17 @@
 # AceBook
 
 ## User Stories
- - [ ] (1) Sign Up
- - [ ] (2) Log In
+ - [x] (1) Sign Up
+ - [x] (2) Log In
  - [ ] (3) Log Out
  - [ ] (4) List Users
  - [ ] (5) Send Friend Request
  - [ ] (6) Respond to Friend Request
- - [ ] (7) View Feed
+ - [x] (7) View Feed
  - [ ] (8) Only Friends can see Details
  - [ ] (9) Securing User Data
  - [ ] (10) Uploading User Profile Pic
- - [ ] (11) Posting to Feed
+ - [x] (11) Posting to Feed
  - [ ] (12) User Registration Confirmation Email
  - [ ] (13) Notification of Incoming Friend Request
  - [ ] (14) Notification of Status Change to Outgoing Friend Request
