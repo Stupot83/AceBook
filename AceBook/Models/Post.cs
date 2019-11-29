@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using AceBook.Helpers;
+using MongoDB.Bson;
 
 namespace AceBook.Models
 {
@@ -20,15 +22,20 @@ namespace AceBook.Models
             };
         }
 
-        public static Post GetStatus(string postId)
+        public static List<Post> GetAll()
         {
-            var data = DbHelper.GetPost(postId);
-            return new Post
+            var data = DbHelper.GetPost();
+            var posts = new List<Post> { };
+            foreach (BsonDocument post in data)
             {
-                UserId = data.GetValue("userId").ToString(),
-                Message = data.GetValue("message").ToString(),
-                DatePosted = data.GetValue("datePosted").ToString()
-            };
+                posts.Add(new Post
+                {
+                    UserId = post.GetValue("userId").ToString(),
+                    Message = post.GetValue("message").ToString(),
+                    DatePosted = post.GetValue("datePosted").ToString()
+                }); 
+            }
+            return posts;
         }
     }
 }

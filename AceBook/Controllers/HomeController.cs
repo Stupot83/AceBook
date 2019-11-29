@@ -20,6 +20,7 @@ namespace AceBook.Controllers
 
         public IActionResult Index()
         {
+            ViewData["posts"] = Post.GetAll();
             return View();
         }
 

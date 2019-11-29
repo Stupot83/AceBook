@@ -32,8 +32,8 @@ namespace AceBookTests.UnitTests
             var result = controller.PostStatus(
                 userId,
                 message,
-                datePosted) as StatusCodeResult;
-            Assert.AreEqual(201, result.StatusCode);
+                datePosted) as RedirectResult;
+            Assert.AreEqual("/", result.Url);
         }
 
         [Test]

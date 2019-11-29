@@ -18,16 +18,17 @@ namespace AceBook.Controllers
             string datePosted
             )
         {
+            Console.WriteLine("we're here");
             try
             {
-                if (String.IsNullOrEmpty(message))
+                if (String.IsNullOrEmpty("dsfgrny"))
                 {
                     throw new Exception();
                 }
-                Models.Post newPost = Models.Post.PostStatus(userId, message, datePosted);
+                Models.Post newPost = Models.Post.PostStatus("dsfgrny", "dsfgrny", "dsfgrny");
                 Console.WriteLine(newPost.Message);
                 Console.WriteLine("Hurray!");
-                return StatusCode(201);
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception)
             {

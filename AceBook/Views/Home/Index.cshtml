@@ -6,10 +6,17 @@
 
 @if (name != null)
 {
-    <form method="post" action="/post/new">
-        <input id="PostInput" placeholder="wys/wagwan..." type="text" />
-        <input type ="submit" />
+    <form method="post" action="post/PostStatus">
+        <input id="PostInput" placeholder="wys, wagwan..." type="text" />
+        <input type ="submit" id="PostSubmit" />
     </form>
+
+    <ul>
+        @foreach (var data in ViewData["posts"] as List<Post>)
+        {
+        <li>@data.Message</li>
+        }
+    </ul>
 }
 else
 {
