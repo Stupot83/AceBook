@@ -20,4 +20,10 @@
     <Folder Include="wwwroot\img" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Controllers\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\UserRepository.cd" />
+  </ItemGroup>
 </Project>

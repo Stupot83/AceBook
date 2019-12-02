@@ -2,6 +2,8 @@ using NUnit.Framework;
 using AceBook.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Moq;
 
 namespace AceBookTests.UnitTests
 {
@@ -65,7 +67,11 @@ namespace AceBookTests.UnitTests
         [Test]
         public void AddFriendSuccessful()
         {
-            controller.HttpContext.Session.SetString("email", "myemail");
+            var mockContext = new Mock<HttpContext>();
+            var mockSession = new MockSession();
+            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+            mockContext.Setup(s => s.Session).Returns(mockSession);
+            controller.ControllerContext.HttpContext = mockContext.Object;
             var result = controller.AddFriend("83@a.com") as OkResult;
             
             Assert.AreEqual(200, result.StatusCode);

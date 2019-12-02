@@ -8,6 +8,7 @@ using System.Web;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
+
 namespace AceBook.Helpers
 {
     public class DbHelper
@@ -44,6 +45,7 @@ namespace AceBook.Helpers
             };
 
             collection.InsertOneAsync(document);
+            
         }
 
         public static BsonDocument GetUserByEmail(string email)
