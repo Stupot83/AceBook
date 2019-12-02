@@ -21,7 +21,7 @@ namespace AceBook.Helpers
         
         private static IMongoCollection<BsonDocument> ConnectToDB(string collectionName)
         {
-            var connectionString = "mongodb://localhost:27017";
+            var connectionString = "mongodb+srv://admin:thelegend27@cluster0-l5nyz.gcp.mongodb.net";
 
             var client = new MongoClient(MongoUrl.Create(connectionString));
 
@@ -82,13 +82,15 @@ namespace AceBook.Helpers
                 { "receiverEmail", receiverEmail },
                 { "status", RequestPending }
             };
+
+            collection.InsertOneAsync(document);
         }
 
-        public static void SetFriendRequestStatus(string requestId, int newStatus)
+        public static void SetFriendRequestStatus(string reqesterEmail, int newStatus)
         {
             var collection = ConnectToDB("friends");
             collection.UpdateOneAsync(
-                new BsonDocument("_id", requestId),
+                new BsonDocument("email", reqesterEmail),
                 new BsonDocument("status", newStatus)
             );
         }

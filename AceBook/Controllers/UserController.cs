@@ -52,6 +52,15 @@ namespace AceBook.Controllers
         {
             var email = HttpContext.Session.GetString("email");
             DbHelper.AddFriend(email, receiverEmail);
+            Console.Write(email);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult AcceptFriend(string requesterEmail)
+        {
+            DbHelper.SetFriendRequestStatus(requesterEmail, DbHelper.RequestAccepted);
 
             return Ok();
         }
