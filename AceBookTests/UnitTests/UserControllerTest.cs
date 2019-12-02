@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using AceBook.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AceBookTests.UnitTests
@@ -8,7 +9,7 @@ namespace AceBookTests.UnitTests
     public class UserControllerTest
     {
         private UserController controller;
-        
+
         string firstName = "Joseph";
         string lastName = "Timothy";
         string email = "JosephTimothy@email.com";
@@ -59,6 +60,15 @@ namespace AceBookTests.UnitTests
                 birthDate,
                 gender) as BadRequestResult;
             Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void AddFriendSuccessful()
+        {
+            controller.HttpContext.Session.SetString("email", "myemail");
+            var result = controller.AddFriend("83@a.com") as OkResult;
+            
+            Assert.AreEqual(200, result.StatusCode);
         }
     }    
 }
