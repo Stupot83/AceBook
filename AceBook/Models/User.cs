@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using AceBook.Helpers;
+using MongoDB.Bson;
 
 namespace AceBook.Models
 {
@@ -52,6 +54,21 @@ namespace AceBook.Models
             }
             
             throw new Exception("Could not authenticate user");
+        }
+
+        public static List<User> GetAll()
+        {
+            var data = DbHelper.GetUserByName();
+            var users = new List<User> { };
+            foreach (BsonDocument user in data)
+            {
+                users.Add(new User
+                {
+                    FirstName = user.GetValue("firstName").ToString(),
+                    LastName = user.GetValue("lastName").ToString()
+                });
+            }
+            return users;
         }
 
         public static User GetUserByEmail(string email)

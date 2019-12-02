@@ -64,5 +64,11 @@ namespace AceBook.Helpers
             var collection = ConnectToDB("AceBookDB", "post");
             return collection.Find(new BsonDocument()).ToList();
         }
+
+        public static List<BsonDocument> GetUserByName()
+        {
+            var collection = ConnectToDB("AceBookDB", "user");
+            return collection.Find(new BsonDocument()).ToList();
+        }
     }
 }
