@@ -30,6 +30,17 @@ namespace AceBook.Helpers
             return database.GetCollection<BsonDocument>(collectionName);
         }
 
+        public static void ClearCollection(string collectionName)
+        {
+            var connectionString = "mongodb+srv://admin:thelegend27@cluster0-l5nyz.gcp.mongodb.net";
+
+            var client = new MongoClient(MongoUrl.Create(connectionString));
+
+            var database = client.GetDatabase(DatabaseName);
+
+            database.DropCollection(collectionName);
+        }
+
         public static void RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber, string birthDate, string gender)
         {
             var collection = ConnectToDB("user");
@@ -75,7 +86,7 @@ namespace AceBook.Helpers
 
         public static void AddFriend(string requesterEmail, string receiverEmail)
         {
-            var collection = ConnectToDB("friends");
+            var collection = ConnectToDB("friend");
             var document = new BsonDocument
             {
                 { "requesterEmail", requesterEmail },
@@ -86,24 +97,24 @@ namespace AceBook.Helpers
             collection.InsertOneAsync(document);
         }
 
-        public static void SetFriendRequestStatus(string reqesterEmail, int newStatus)
+        public static void SetFriendRequestStatus(BsonObjectId id, int newStatus)
         {
-            var collection = ConnectToDB("friends");
+            var collection = ConnectToDB("friend");
             collection.UpdateOneAsync(
-                new BsonDocument("email", reqesterEmail),
+                new BsonDocument("_id", id),
                 new BsonDocument("status", newStatus)
             );
         }
 
         public static List<BsonDocument> GetOutgoingFriendRequests(string requesterEmail)
         {
-            var collection = ConnectToDB("friends");
+            var collection = ConnectToDB("friend");
             return collection.Find(new BsonDocument("requesterEmail", requesterEmail)).ToList();
         }
 
         public static List<BsonDocument> GetIncomingFriendRequests(string receiverEmail)
         {
-            var collection = ConnectToDB("friends");
+            var collection = ConnectToDB("friend");
             return collection.Find(new BsonDocument("receiverEmail", receiverEmail)).ToList();
         }
     }

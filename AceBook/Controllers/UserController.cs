@@ -2,6 +2,7 @@ using System;
 using AceBook.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AceBook.Models;
 
 namespace AceBook.Controllers
 {
@@ -58,9 +59,17 @@ namespace AceBook.Controllers
         }
 
         [HttpPost]
-        public IActionResult AcceptFriend(string requesterEmail)
+        public IActionResult AcceptFriend(string requestId)
         {
-            DbHelper.SetFriendRequestStatus(requesterEmail, DbHelper.RequestAccepted);
+            Friend.AcceptFriend(requestId);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult DeclineFriend(string requestId)
+        {
+            Friend.DeclineFriend(requestId);
 
             return Ok();
         }
