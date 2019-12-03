@@ -20,6 +20,11 @@
     <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Controllers\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\UserRepository.cd" />
+
     <Content Remove="wwwroot\css\materialize.min.css" />
   </ItemGroup>
 </Project>

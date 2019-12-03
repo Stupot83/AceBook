@@ -1,6 +1,11 @@
 using NUnit.Framework;
 using AceBook.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AceBook.Helpers;
+using AceBook.Models;
+using Microsoft.AspNetCore.Session;
+using Moq;
 
 namespace AceBookTests.UnitTests
 {
@@ -8,7 +13,7 @@ namespace AceBookTests.UnitTests
     public class UserControllerTest
     {
         private UserController controller;
-        
+
         string firstName = "Joseph";
         string lastName = "Timothy";
         string email = "JosephTimothy@email.com";
@@ -22,6 +27,8 @@ namespace AceBookTests.UnitTests
         public void TestSetup()
         {
             controller = new UserController();
+            DbHelper.ClearCollection("friend");
+            DbHelper.AddFriend("JosephTimothy@email.com", "Susan.Longley@bglgroup.co.uk");
         }
 
         [Test]
@@ -59,6 +66,47 @@ namespace AceBookTests.UnitTests
                 birthDate,
                 gender) as BadRequestResult;
             Assert.AreEqual(400, result.StatusCode);
+        }
+
+        [Test]
+        public void AddFriendSuccessful()
+        {
+            var mockContext = new Mock<HttpContext>();
+            var mockSession = new MockSession();
+            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+            mockContext.Setup(s => s.Session).Returns(mockSession);
+            controller.ControllerContext.HttpContext = mockContext.Object;
+            var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
+            
+            Assert.AreEqual(200, result.StatusCode);
+        }
+
+        [Test]
+        public void AcceptFriendSuccessful()
+        {
+            var mockContext = new Mock<HttpContext>();
+            var mockSession = new MockSession();
+            mockSession.SetString("email", "JosephTimothy@email.com");
+            mockContext.Setup(s => s.Session).Returns(mockSession);
+            controller.ControllerContext.HttpContext = mockContext.Object;
+            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
+            var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as OkResult;
+
+            Assert.AreEqual(200, result.StatusCode);
+        }
+
+        [Test]
+        public void DeclineFriendSuccessful()
+        {
+            var mockContext = new Mock<HttpContext>();
+            var mockSession = new MockSession();
+            mockSession.SetString("email", "JosephTimothy@email.com");
+            mockContext.Setup(s => s.Session).Returns(mockSession);
+            controller.ControllerContext.HttpContext = mockContext.Object;
+            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
+            var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as OkResult;
+
+            Assert.AreEqual(200, result.StatusCode);
         }
     }    
 }

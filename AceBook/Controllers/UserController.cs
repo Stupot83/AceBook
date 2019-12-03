@@ -1,5 +1,8 @@
 using System;
+using AceBook.Helpers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AceBook.Models;
 
 namespace AceBook.Controllers
 {
@@ -43,6 +46,32 @@ namespace AceBook.Controllers
                 return BadRequest();
             }
             return Redirect("/home");    
+        }
+
+        [HttpPost]
+        public IActionResult AddFriend(string receiverEmail)
+        {
+            var email = HttpContext.Session.GetString("email");
+            DbHelper.AddFriend(email, receiverEmail);
+            Console.Write(email);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult AcceptFriend(string requestId)
+        {
+            Friend.AcceptFriend(requestId);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult DeclineFriend(string requestId)
+        {
+            Friend.DeclineFriend(requestId);
+
+            return Ok();
         }
     }
 }
