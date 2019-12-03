@@ -117,7 +117,9 @@ namespace AceBook.Helpers
         public static List<BsonDocument> GetIncomingFriendRequests(string receiverEmail)
         {
             var collection = ConnectToDB("friend");
-            return collection.Find(new BsonDocument("receiverEmail", receiverEmail)).ToList();
+            return collection.Find(
+                Builders<BsonDocument>.Filter.Eq("receiverEmail", receiverEmail) &
+                Builders<BsonDocument>.Filter.Eq("status", RequestPending)).ToList();
         }
 
         public static List<BsonDocument> GetUserByName()
