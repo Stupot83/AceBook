@@ -79,10 +79,19 @@
     <script src="~/js/materialize.min.js"></script>
     <script>
         const AutoCompleteData = @Html.Raw(AceBook.Models.User.GetAutoCompleteData());
-            $(document).ready(function(){
+        const DisplayedAutoCompleteData = {};
+        for (const [key, value] of Object.entries(AutoCompleteData)) {
+            DisplayedAutoCompleteData[value] = null;
+        }
+        $(document).ready(function () {
                 $('input.autocomplete').autocomplete({
-                    data: AutoCompleteData
-                });
+                    data: DisplayedAutoCompleteData,
+
+                    onAutocomplete: function (val) {
+                        alert(val)
+                    }
+
+                    });
              });
     </script>
     @RenderSection("Scripts", required: false)

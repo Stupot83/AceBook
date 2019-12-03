@@ -9,6 +9,7 @@ namespace AceBook.Models
 {
     public class User
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -67,7 +68,8 @@ namespace AceBook.Models
                 users.Add(new User
                 {
                     FirstName = user.GetValue("firstName").ToString(),
-                    LastName = user.GetValue("lastName").ToString()
+                    LastName = user.GetValue("lastName").ToString(),
+                    Id = user.GetValue("_id").ToString()
                 });
 
             }
@@ -81,7 +83,7 @@ namespace AceBook.Models
             var data = new Dictionary<string, string> { };
             foreach (User user in users)
             {
-                data[$"{user.FirstName} {user.LastName}"] = "";
+                data[user.Id] = $"{user.FirstName} {user.LastName}";
             }
 
             return JsonSerializer.Serialize(data);
