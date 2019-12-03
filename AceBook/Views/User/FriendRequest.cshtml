@@ -1,0 +1,31 @@
+﻿@using AceBook.Models;
+@using Microsoft.AspNetCore.Http;
+@using AceBook.Controllers;
+@using AceBook.Helpers;
+
+@{
+    ViewData["Title"] = "Friend Requests";
+    var email = Context.Session.GetString("email");
+
+    var requests = Friend.GetIncomingRequest(email);
+}
+
+<h1>Friend Requests</h1>
+
+@if (requests.Count > 0)
+{
+    @foreach (Friend request in requests)
+    {
+        <div id="userFriendRequest">
+            <p>@request.RequesterEmail</p>
+            <p><a asp-controller="User" asp-action="AcceptFriend" asp-route-requestId="@request.Id">Accept</a></p>
+            <a asp-controller="User" asp-action="DeclineFriend" asp-route-requestId="@request.Id">Decline</a>
+            <p></p>
+        </div>
+
+    }
+}
+else
+{
+    <p>Nobody wants to be mates with you at the moment 🤒</p>
+}

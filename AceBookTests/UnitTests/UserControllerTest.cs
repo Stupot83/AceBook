@@ -103,9 +103,9 @@ namespace AceBookTests.UnitTests
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
-            var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as OkResult;
+            var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual("/User/FriendRequest", result.Url);
         }
 
         [Test]
@@ -117,9 +117,9 @@ namespace AceBookTests.UnitTests
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
-            var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as OkResult;
+            var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.AreEqual("/User/FriendRequest", result.Url);
         }
     }    
 }
