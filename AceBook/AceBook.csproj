@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="bootstrap" Version="4.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.3" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.9.3" />
@@ -19,5 +18,8 @@
     <Folder Include="Helpers\" />
     <Folder Include="wwwroot\img" />
     <Folder Include="Views\Account\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\css\materialize.min.css" />
   </ItemGroup>
 </Project>

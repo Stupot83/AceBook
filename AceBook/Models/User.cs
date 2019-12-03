@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using AceBook.Helpers;
 using MongoDB.Bson;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AceBook.Models
 {
@@ -67,8 +69,22 @@ namespace AceBook.Models
                     FirstName = user.GetValue("firstName").ToString(),
                     LastName = user.GetValue("lastName").ToString()
                 });
+
             }
             return users;
+        }
+
+        public static string GetAutoCompleteData()
+        {
+            var users = GetAll();
+
+            var data = new Dictionary<string, string> { };
+            foreach (User user in users)
+            {
+                data[$"{user.FirstName} {user.LastName}"] = "";
+            }
+
+            return JsonSerializer.Serialize(data);
         }
 
         public static User GetUserByEmail(string email)
