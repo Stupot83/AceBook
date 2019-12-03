@@ -101,9 +101,10 @@ namespace AceBook.Helpers
         public static void SetFriendRequestStatus(BsonObjectId id, int newStatus)
         {
             var collection = ConnectToDB("friend");
+
             collection.UpdateOneAsync(
-                new BsonDocument("_id", id),
-                new BsonDocument("status", newStatus)
+                Builders<BsonDocument>.Filter.Eq("_id", id),
+                Builders<BsonDocument>.Update.Set("status", newStatus)
             );
         }
 

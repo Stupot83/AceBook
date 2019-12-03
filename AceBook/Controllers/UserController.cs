@@ -68,15 +68,15 @@ namespace AceBook.Controllers
         {
             Friend.AcceptFriend(requestId);
 
-            return Ok();
+            return Redirect("/User/FriendRequest");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult DeclineFriend(string requestId)
         {
             Friend.DeclineFriend(requestId);
 
-            return Ok();
+            return Redirect("/User/FriendRequest");
         }
     }
 }

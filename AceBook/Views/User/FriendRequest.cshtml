@@ -12,4 +12,11 @@
 
 <h1>Friend Requests</h1>
 
-<div id="userFriendRequest">@Friend.GetIncomingRequest(email)[0].RequesterEmail</div>
+@{
+    var req = Friend.GetIncomingRequest(email)[0];
+}
+
+<div id="userFriendRequest">@req.RequesterEmail</div>
+<a asp-controller="User" asp-action="AcceptFriend" asp-route-requestId="@req.Id">Accept</a>
+<a asp-controller="User" asp-action="DeclineFriend" asp-route-requestId="@req.Id">Decline</a>
+
