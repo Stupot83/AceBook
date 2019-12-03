@@ -69,7 +69,7 @@ namespace AceBookTests.UnitTests
         {
             var mockContext = new Mock<HttpContext>();
             var mockSession = new MockSession();
-            //mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
             var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
@@ -82,7 +82,7 @@ namespace AceBookTests.UnitTests
         {
             var mockContext = new Mock<HttpContext>();
             var mockSession = new MockSession();
-            //mockSession.SetString("email", "JosephTimothy@email.com");
+            mockSession.SetString("email", "JosephTimothy@email.com");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
             var result = controller.AcceptFriend("Susan.Longley@bglgroup.co.uk") as OkResult;
