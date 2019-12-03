@@ -9,7 +9,7 @@ namespace AceBook.Models
 {
     public class User
     {
-        public string Id { get; set; }
+        public BsonObjectId Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -47,6 +47,7 @@ namespace AceBook.Models
             {
                 return new User
                 {
+                    Id = (BsonObjectId)data.GetValue("_id"),
                     FirstName = (string) data.GetValue("firstName"),
                     LastName = (string) data.GetValue("lastName"),
                     Email = (string) data.GetValue("email"),
@@ -69,7 +70,7 @@ namespace AceBook.Models
                 {
                     FirstName = user.GetValue("firstName").ToString(),
                     LastName = user.GetValue("lastName").ToString(),
-                    Id = user.GetValue("_id").ToString()
+                    Id = (BsonObjectId) user.GetValue("_id")
                 });
 
             }
@@ -83,7 +84,7 @@ namespace AceBook.Models
             var data = new Dictionary<string, string> { };
             foreach (User user in users)
             {
-                data[user.Id] = $"{user.FirstName} {user.LastName}";
+                data[user.Id.ToString()] = $"{user.FirstName} {user.LastName}";
             }
 
             return JsonSerializer.Serialize(data);
@@ -102,6 +103,21 @@ namespace AceBook.Models
                 BirthDate = (string)data.GetValue("birthDate"),
                 Gender = (string)data.GetValue("gender")
             };            
+        }
+
+        public static User GetUserById(string userId)
+        {
+            var data = DbHelper.GetUserById(userId);
+
+            return new User
+            {
+                FirstName = (string)data.GetValue("firstName"),
+                LastName = (string)data.GetValue("lastName"),
+                Email = (string)data.GetValue("email"),
+                PhoneNumber = (string)data.GetValue("phoneNumber"),
+                BirthDate = (string)data.GetValue("birthDate"),
+                Gender = (string)data.GetValue("gender")
+            };
         }
 
         private static bool CheckPassword(string password, string confirmPassword)
