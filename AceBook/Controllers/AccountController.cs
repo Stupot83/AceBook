@@ -18,9 +18,11 @@ namespace AceBook.Controllers
                 var user = Models.User.AuthenticateAndGet(email, password);
 
                 HttpContext.Session.SetString("email", email);
+                HttpContext.Session.SetString("userId", user.Id.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 return RedirectToAction("Login", "Account");
             }
             

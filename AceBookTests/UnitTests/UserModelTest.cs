@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using AceBook.Models;
 using System;
+using MongoDB.Bson;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AceBookTests.UnitTests
 {
@@ -9,6 +12,7 @@ namespace AceBookTests.UnitTests
     {
         User user;
 
+        string Id = "5de50e985606090f02e1e461";
         string firstName = "Joseph";
         string lastName = "Timothy";
         string email = "JosephTimothy@email.com";
@@ -38,6 +42,12 @@ namespace AceBookTests.UnitTests
         public void ShouldBeAnInstanceOfUser()
         {
             Assert.That(user, Is.InstanceOf<User>());
+        }
+
+        [Test]
+        public void HasId()
+        {
+            Assert.IsNotNull(Id);
         }
 
         [Test]
@@ -87,6 +97,46 @@ namespace AceBookTests.UnitTests
         public void RegistersAUser()
         {
             User newUser = User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
+            Assert.That(newUser, Is.InstanceOf<User>());
+        }
+
+        [Test]
+        [Category("Get user by id")]
+        public void GetsAUserById()
+        {
+            User newUser = User.GetUserById(Id);
+            Assert.That(newUser, Is.InstanceOf<User>());
+        }
+
+        [Test]
+        [Category("Get user by email")]
+        public void GetsAUserByEmail()
+        {
+            User newUser = User.GetUserByEmail(email);
+            Assert.That(newUser, Is.InstanceOf<User>());
+        }
+
+        [Test]
+        [Category("Get all users")]
+        public void GetsAllUsers()
+        {
+            var users = User.GetAll();
+            Assert.That(users, Is.TypeOf<System.Collections.Generic.List<User>>());
+        }
+
+        [Test]
+        [Category("Get auto complete data")]
+        public void GetsAutoCompleteData()
+        {
+            var data = User.GetAutoCompleteData();
+            Assert.IsNotNull(data);
+        }
+
+        [Test]
+        [Category("Authenticate user")]
+        public void AuthenticateUser()
+        {
+            User newUser = User.AuthenticateAndGet(email, password);
             Assert.That(newUser, Is.InstanceOf<User>());
         }
 

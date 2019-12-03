@@ -19,8 +19,10 @@ namespace AceBook.Controllers
             return View("Register");
         }
 
-        public IActionResult Profile()
+        [Route("user/profile/{userId}")]
+        public IActionResult Profile(string userId)
         {
+            ViewData["userId"] = userId;
             return View("Profile");
         }
 
