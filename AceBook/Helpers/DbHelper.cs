@@ -84,6 +84,7 @@ namespace AceBook.Helpers
             return collection.Find(new BsonDocument()).ToList();
         }
 
+
         public static void AddFriend(string requesterEmail, string receiverEmail)
         {
             var collection = ConnectToDB("friend");
@@ -116,6 +117,12 @@ namespace AceBook.Helpers
         {
             var collection = ConnectToDB("friend");
             return collection.Find(new BsonDocument("receiverEmail", receiverEmail)).ToList();
+        }
+
+        public static List<BsonDocument> GetUserByName()
+        {
+            var collection = ConnectToDB("AceBookDB", "user");
+            return collection.Find(new BsonDocument()).ToList();
         }
     }
 }

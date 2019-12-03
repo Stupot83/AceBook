@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using AceBook.Helpers;
+using MongoDB.Bson;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AceBook.Models
 {
     public class User
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -52,6 +57,36 @@ namespace AceBook.Models
             }
             
             throw new Exception("Could not authenticate user");
+        }
+
+        public static List<User> GetAll()
+        {
+            var data = DbHelper.GetUserByName();
+            var users = new List<User> { };
+            foreach (BsonDocument user in data)
+            {
+                users.Add(new User
+                {
+                    FirstName = user.GetValue("firstName").ToString(),
+                    LastName = user.GetValue("lastName").ToString(),
+                    Id = user.GetValue("_id").ToString()
+                });
+
+            }
+            return users;
+        }
+
+        public static string GetAutoCompleteData()
+        {
+            var users = GetAll();
+
+            var data = new Dictionary<string, string> { };
+            foreach (User user in users)
+            {
+                data[user.Id] = $"{user.FirstName} {user.LastName}";
+            }
+
+            return JsonSerializer.Serialize(data);
         }
 
         public static User GetUserByEmail(string email)

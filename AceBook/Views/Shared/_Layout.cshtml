@@ -10,8 +10,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AceBook</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/materialize.css">
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -47,6 +47,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (email != null)
+                        {
+                        <li class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="autocomplete-input" class="autocomplete">
+                                        <label for="autocomplete-input">Find Friends</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -62,8 +75,25 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/materialize.min.js"></script>
+    <script>
+        const AutoCompleteData = @Html.Raw(AceBook.Models.User.GetAutoCompleteData());
+        const DisplayedAutoCompleteData = {};
+        for (const [key, value] of Object.entries(AutoCompleteData)) {
+            DisplayedAutoCompleteData[value] = null;
+        }
+        $(document).ready(function () {
+                $('input.autocomplete').autocomplete({
+                    data: DisplayedAutoCompleteData,
+
+                    onAutocomplete: function (val) {
+                        alert(val)
+                    }
+
+                    });
+             });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
