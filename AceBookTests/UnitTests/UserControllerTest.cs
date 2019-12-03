@@ -92,7 +92,7 @@ namespace AceBookTests.UnitTests
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
             var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual("/User/FriendRequest", result.);
+            Assert.AreEqual("/User/FriendRequest", result.Url);
         }
 
         [Test]
