@@ -28,6 +28,11 @@ namespace AceBook.Models
             DbHelper.SetFriendRequestStatus(new BsonObjectId(new ObjectId(id)), DbHelper.RequestDeclined);
         }
 
+        public static int FriendRequestCount(string receiverEmail)
+        {
+            return GetIncomingRequest(receiverEmail).Count;
+        }
+
         public static List<Friend> GetOutgoingRequest(string requesterEmail)
         {
             var data = DbHelper.GetOutgoingFriendRequests(requesterEmail);
@@ -38,7 +43,7 @@ namespace AceBook.Models
                 {
                     Id = (BsonObjectId)friend.GetValue("_id"),
                     ReceiverEmail = (string)friend.GetValue("receiverEmail"),
-                    RequesterEmail = (string)friend.GetValue("receiverEmail"),
+                    RequesterEmail = (string)friend.GetValue("requesterEmail"),
                     Status = (int)friend.GetValue("status")
                 });
             }
@@ -56,7 +61,7 @@ namespace AceBook.Models
                 {
                     Id = (BsonObjectId)friend.GetValue("_id"),
                     ReceiverEmail = (string)friend.GetValue("receiverEmail"),
-                    RequesterEmail = (string)friend.GetValue("receiverEmail"),
+                    RequesterEmail = (string)friend.GetValue("requesterEmail"),
                     Status = (int)friend.GetValue("status")
                 });
             }

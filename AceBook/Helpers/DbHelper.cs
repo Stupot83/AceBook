@@ -121,7 +121,7 @@ namespace AceBook.Helpers
 
         public static List<BsonDocument> GetUserByName()
         {
-            var collection = ConnectToDB("AceBookDB", "user");
+            var collection = ConnectToDB("user");
             return collection.Find(new BsonDocument()).ToList();
         }
     }

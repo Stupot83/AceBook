@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using AceBook.Models;
 
 @{
     string email = Context.Session.GetString("email");
@@ -34,6 +35,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" id="profile" asp-action="Profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" id="friendRequests" asp-action="FriendRequest">Friend Requests<span class="new badge">@Friend.FriendRequestCount(email)</span></a>
                             </li>
                         } else
                         {

@@ -24,6 +24,11 @@ namespace AceBook.Controllers
             return View("Profile");
         }
 
+        public IActionResult FriendRequest()
+        {
+            return View("FriendRequest");
+        }
+
         [HttpPost]
         public IActionResult Register(
             string firstName,
@@ -58,7 +63,7 @@ namespace AceBook.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult AcceptFriend(string requestId)
         {
             Friend.AcceptFriend(requestId);

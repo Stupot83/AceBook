@@ -1,0 +1,15 @@
+﻿@using AceBook.Models;
+@using Microsoft.AspNetCore.Http;
+@using AceBook.Controllers;
+@using AceBook.Helpers;
+
+@{
+    ViewData["Title"] = "Friend Requests";
+    var email = Context.Session.GetString("email");
+}
+
+<!DOCTYPE html>
+
+<h1>Friend Requests</h1>
+
+<div id="userFriendRequest">@Friend.GetIncomingRequest(email)[0].RequesterEmail</div>
