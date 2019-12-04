@@ -56,9 +56,8 @@ namespace AceBookTests.FeatureTests
             _driver.Get("#sendFriendRequestButton").Click();
             var request = Friend.GetOutgoingRequest("Susan.Longley@bglgroup.co.uk")[0];
             DbHelper.SetFriendRequestStatus(request.Id, DbHelper.RequestAccepted);
-            
             _driver.Navigate().Refresh();
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
             var friendRequestAcceptedMessage = _driver.Get("#friendRequestAcceptedMessage");
             Assert.That(friendRequestAcceptedMessage.Displayed, Is.EqualTo(true));
         }

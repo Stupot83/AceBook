@@ -81,18 +81,19 @@ namespace AceBookTests.UnitTests
             Assert.AreEqual(400, result.StatusCode);
         }
 
-        //[Test]
-        //public void AddFriendSuccessful()
-        //{
-        //    var mockContext = new Mock<HttpContext>();
-        //    var mockSession = new MockSession();
-        //    mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
-        //    mockContext.Setup(s => s.Session).Returns(mockSession);
-        //    controller.ControllerContext.HttpContext = mockContext.Object;
-        //    var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
-            
-        //    Assert.AreEqual(200, result.StatusCode);
-        //}
+        [Test]
+        public void AddFriendSuccessful()
+        {
+            var mockContext = new Mock<HttpContext>();
+            var mockSession = new MockSession();
+            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+            mockContext.Setup(s => s.Session).Returns(mockSession);
+            controller.ControllerContext.HttpContext = mockContext.Object;
+            var userId = User.GetUserByEmail("JosephTimothy@email.com").Id.ToString();
+            var result = controller.AddFriend("JosephTimothy@email.com", userId) as RedirectResult;
+
+            Assert.That(result.Url, Does.Contain($"/User/{userId}"));
+        }
 
         [Test]
         public void AcceptFriendSuccessful()
