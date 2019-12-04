@@ -143,3 +143,11 @@ h4 {
 .register-button {
     margin-bottom: 0px !important;
 }
+
+.search {
+    color: white;
+}
+
+#top-search .input-field .prefix {
+    width: 0rem !important;
+}
