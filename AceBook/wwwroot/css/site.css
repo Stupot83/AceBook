@@ -6,6 +6,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     min-width: 385px;
     overflow: hidden;
+    background-color: #F0F0F0;
 }
 a.navbar-brand {
   white-space: normal;
@@ -77,6 +78,7 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  text-align: right;
 }
 
 .navbar {
@@ -151,3 +153,39 @@ h4 {
 #top-search .input-field .prefix {
     width: 0rem !important;
 }
+
+#top-search .input-field .prefix.active {
+    color: white !important;
+}
+
+#top-search {
+    margin-bottom: 0 !important;
+    margin-left: 50px;
+}
+
+.autocomplete {
+    margin-bottom: 0!important;
+}
+
+.autocomplete.active {
+    color: white !important;
+}
+
+#top-search input.autocomplete {
+    font-size: 1rem !important;
+    margin-top: 10px;
+    color: white;
+}
+
+.footer-text {
+     margin-right: 50px;
+}
+
+#top-search .input-field .prefix ~ .autocomplete-content {
+    top: 63px !important;
+}
+
+#top-search .input-field input[type=text]:focus {
+     border-bottom: 1px solid white;
+     box-shadow: 0 1px 0 0 #F0F0F0;
+   }
