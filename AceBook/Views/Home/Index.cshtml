@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Home Page";
+    <link rel="stylesheet" href="~/css/site.css" />
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
 }
@@ -23,8 +24,8 @@
 else
 {
     <div class="text-center">
-        <h1 class="display-6">Welcome to</h1>
-        <h2 class="display-1">Acebook</h2>
+        <h4 class="display-6">Welcome to</h4>
         <img class="img-fluid" src="img/holding-hands.png" />
+        <h1 class="display-1">Acebook</h1>
     </div>
 }
