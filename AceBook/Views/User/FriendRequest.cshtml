@@ -16,16 +16,19 @@
 {
     @foreach (Friend request in requests)
     {
-        <div id="userFriendRequest">
-            <p>@request.RequesterEmail</p>
-            <p><a asp-controller="User" asp-action="AcceptFriend" asp-route-requestId="@request.Id">Accept</a></p>
-            <a asp-controller="User" asp-action="DeclineFriend" asp-route-requestId="@request.Id">Decline</a>
-            <p></p>
+        <div class="friendRequest">
+            <p class="friendRequestEmail">@request.RequesterEmail</p>
+            <p>
+                <a class="friendRequestAccept" asp-controller="User" asp-action="AcceptFriend" asp-route-requestId="@request.Id">Accept</a>
+            </p>
+            <p>
+                <a class="friendRequestDecline" asp-controller="User" asp-action="DeclineFriend" asp-route-requestId="@request.Id">Decline</a>
+            </p>
         </div>
 
     }
 }
 else
 {
-    <p>Nobody wants to be mates with you at the moment 🤒</p>
+    <p id="noRequestsBoss">Nobody wants to be mates with you at the moment 🤒</p>
 }
