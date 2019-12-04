@@ -96,6 +96,7 @@ namespace AceBook.Models
 
             return new User
             {
+                Id = (BsonObjectId)data.GetValue("_id"),
                 FirstName = (string)data.GetValue("firstName"),
                 LastName = (string)data.GetValue("lastName"),
                 Email = (string)data.GetValue("email"),

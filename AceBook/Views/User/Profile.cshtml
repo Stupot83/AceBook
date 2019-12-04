@@ -1,10 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using AceBook.Models;
 @{
     ViewData["Title"] = "Register";
 
-    var userId = ViewData["userId"];
+    var userId = Context.Session.GetString("userId");
 
-    var user = AceBook.Models.User.GetUserById(userId.ToString());
+    var user = AceBook.Models.User.GetUserById(userId);
+
+    var profileUserId = ViewData["userId"].ToString();
+
+    var profileUser = AceBook.Models.User.GetUserById(profileUserId.ToString());
+
+    var outgoingRequests = Friend.GetOutgoingRequest(user.Email).Where(r => r.ReceiverEmail == profileUser.Email).ToList();
 }
 
 @section Styles {
@@ -13,42 +20,68 @@
 
 <div class="col-md-8 offset-md-2">
     <h1 id="title">Profile</h1>
+
+
+    @if (userId != profileUserId)
+    {
+        @if (outgoingRequests.Count == 1)
+        {
+            @if (outgoingRequests.First().Status == 0)
+            {
+                <p id="friendRequestSentMessage">Friend request sent</p>
+            }
+            else if (outgoingRequests.First().Status == 1) 
+            {
+                <p id="friendRequestAcceptedMessage">You are friends</p>
+            }
+            else
+            {
+                <p id="friendRequestDeclinedMessage">This person does not want to be friends with you at the moment</p>
+            }
+
+        }
+        else
+        {
+            <a class="btn" id="sendFriendRequestButton" asp-controller="User" asp-action="AddFriend" asp-route-receiverEmail="@profileUser.Email" asp-route-receiverId="@profileUserId">Send Friend Request</a>
+        }
+    }
+
     <form id="register" method="post">
         <div class="form-group">
             <label for="firstName">
                 First Name
             </label>
-            <input id="firstName" name="firstName" type="text" value="@user.FirstName"/>
+            <input id="firstName" name="firstName" type="text" value="@profileUser.FirstName"/>
         </div>
         <div class="form-group">
             <label for="lastName">
                 Last Name
             </label>
-            <input id="lastName" name="lastName" type="text" value="@user.LastName"/>
+            <input id="lastName" name="lastName" type="text" value="@profileUser.LastName"/>
         </div>
         <div class="form-group">
             <label for="email">
                 Email
             </label>
-            <input id="email" name="email" type="text" value="@user.Email"/>
+            <input id="email" name="email" type="text" value="@profileUser.Email"/>
         </div>
         <div class="form-group">
             <label for="birthDate">
                 Date of Birth
             </label>
-            <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@user.BirthDate" class="input-group datepicker"/>
+            <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@profileUser.BirthDate" class="input-group datepicker"/>
         </div>
         <div class="form-group">
             <label for="gender">
                 Gender
             </label>
-            <input id="gender" name="gender" value="@user.Gender" type="text"/>
+            <input id="gender" name="gender" value="@profileUser.Gender" type="text"/>
         </div>
         <div class="form-group">
             <label for="phoneNumber">
                 Phone Number
             </label>
-            <input id="phoneNumber" name="phoneNumber" value="@user.PhoneNumber" type="text"/>
+            <input id="phoneNumber" name="phoneNumber" value="@profileUser.PhoneNumber" type="text"/>
         </div>
     </form>
 </div>

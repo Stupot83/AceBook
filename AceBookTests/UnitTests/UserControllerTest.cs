@@ -89,9 +89,10 @@ namespace AceBookTests.UnitTests
             mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
-            var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
-            
-            Assert.AreEqual(200, result.StatusCode);
+            var userId = User.GetUserByEmail("JosephTimothy@email.com").Id.ToString();
+            var result = controller.AddFriend("JosephTimothy@email.com", userId) as RedirectResult;
+
+            Assert.That(result.Url, Does.Contain($"/User/{userId}"));
         }
 
         [Test]

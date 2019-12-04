@@ -31,9 +31,9 @@ namespace AceBookTests.FeatureTests
             _driver.Navigate().GoToUrl(url);
 
             
-            _driver.FindElement(By.CssSelector("#email")).SendKeys("a@a.com");
-            _driver.FindElement(By.CssSelector("#password")).SendKeys("c");
-            _driver.FindElement(By.CssSelector("#submit")).Click();
+            _driver.Get("#email").SendKeys("a@a.com");
+            _driver.Get("#password").SendKeys("c");
+            _driver.Get("#submit").Click();
 
             Assert.That(_driver.PageSource, Does.Contain("Acebook"));
         }
@@ -45,9 +45,9 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.FindElement(By.CssSelector("#email")).SendKeys("a@a.com");
-            _driver.FindElement(By.CssSelector("#password")).SendKeys("c");
-            _driver.FindElement(By.CssSelector("#submit")).Click();
+            _driver.Get("#email").SendKeys("a@a.com");
+            _driver.Get("#password").SendKeys("c");
+            _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;
 
@@ -61,9 +61,9 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.FindElement(By.CssSelector("#email")).SendKeys("b@b.com");
-            _driver.FindElement(By.CssSelector("#password")).SendKeys("a");
-            _driver.FindElement(By.CssSelector("#submit")).Click();
+            _driver.Get("#email").SendKeys("b@b.com");
+            _driver.Get("#password").SendKeys("a");
+            _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;
 
