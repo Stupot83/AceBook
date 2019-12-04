@@ -7,6 +7,7 @@ namespace AceBook.Models
 {
     public class Post
     {
+        public User User { get; set; }
         public string UserId { get; set; }
         public string Message { get; set; }
         public string DatePosted { get; set; }
@@ -30,6 +31,7 @@ namespace AceBook.Models
             {
                 posts.Add(new Post
                 {
+                    User = User.GetUserById(post.GetValue("userId").ToString()),
                     UserId = post.GetValue("userId").ToString(),
                     Message = post.GetValue("message").ToString(),
                     DatePosted = post.GetValue("datePosted").ToString()

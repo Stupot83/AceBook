@@ -14,18 +14,17 @@ namespace AceBook.Controllers
         [HttpPost]
         public IActionResult PostStatus(
             string userId,
-            string message,
-            string datePosted
+            string message
             )
         {
-            Console.WriteLine("we're here");
             try
             {
-                if (String.IsNullOrEmpty("dsfgrny"))
+                if (string.IsNullOrEmpty(message))
                 {
                     throw new Exception();
                 }
-                Models.Post newPost = Models.Post.PostStatus("dsfgrny", "dsfgrny", "dsfgrny");
+                var date = DateTime.Now.ToString("dd/MM/yyyy");
+                Models.Post newPost = Models.Post.PostStatus(userId, message, date);
                 Console.WriteLine(newPost.Message);
                 Console.WriteLine("Hurray!");
                 return RedirectToAction("Index", "Home");
