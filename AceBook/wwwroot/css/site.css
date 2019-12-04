@@ -5,6 +5,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     font-family: 'Noto Sans KR', sans-serif;
     min-width: 385px;
+    overflow: hidden;
 }
 a.navbar-brand {
   white-space: normal;
@@ -102,21 +103,43 @@ h4 {
     height: 425px !important;
 }
 
-.footer1 {
-    text-align: right;
-    margin-right: 10px !important;
+.login-card {
+    margin-top: 50px;
 }
 
-.loginInput {
-    max-width: 50%;
-    margin-top: 2%;
-}
-
-.centerAligned {
+.login-form {
     text-align: center;
-    margin-top: 8%;
 }
 
-.loginButton {
-    margin-top: 4%;
+.login-form h5 {
+    margin-bottom: 40px;
+}
+
+.login-form label {
+    margin-bottom: 10px;
+}
+
+.input-section {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.register-card {
+    margin-top: 30px;
+}
+
+.register-form {
+    text-align: center;
+}
+
+.register-form label {
+    margin-bottom: 10px;
+}
+
+.register-form .row {
+    margin-bottom: 0px !important;
+}
+
+.register-button {
+    margin-bottom: 0px !important;
 }
