@@ -25,9 +25,9 @@ namespace AceBookTests.FeatureTests
             var url = "https://localhost:5001/Account/Login";
             _driver.Navigate().GoToUrl(url);
 
-            _driver.FindElement(By.CssSelector("#email")).SendKeys("83@a.com");
-            _driver.FindElement(By.CssSelector("#password")).SendKeys("c");
-            _driver.FindElement(By.CssSelector("#submit")).Click();
+            _driver.Get("#email").SendKeys("83@a.com");
+            _driver.Get("#password").SendKeys("c");
+            _driver.Get("#submit").Click();
         }
 
         [TearDown]
@@ -47,7 +47,7 @@ namespace AceBookTests.FeatureTests
         [Test]
         public void CheckCanInput()
         {
-            var inputBox = _driver.FindElement(By.CssSelector("#PostInput"));
+            var inputBox = _driver.Get("#PostInput");
             inputBox.SendKeys("this is a post");
             Assert.That(inputBox.GetAttribute("value"), Is.EqualTo("this is a post"));
         }
@@ -55,8 +55,8 @@ namespace AceBookTests.FeatureTests
         [Test]
         public void CheckCanPost()
         {
-            _driver.FindElement(By.CssSelector("#PostInput")).SendKeys("this is a post");
-            _driver.FindElement(By.CssSelector("#PostSubmit")).Click();
+            _driver.Get("#PostInput").SendKeys("this is a post");
+            _driver.Get("#PostSubmit").Click();
             Assert.That(_driver.PageSource.Contains("this is a post"));
         }
     }

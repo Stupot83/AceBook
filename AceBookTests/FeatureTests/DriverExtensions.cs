@@ -1,10 +1,11 @@
-﻿using System;
+﻿using OpenQA.Selenium;
 namespace AceBookTests.FeatureTests
 {
-    public class DriverExtensions
+    public static class DriverExtensions
     {
-        public DriverExtensions()
+        public static IWebElement Get(this IWebDriver driver, string cssSelector)
         {
+            return driver.FindElement(By.CssSelector(cssSelector));
         }
     }
 }

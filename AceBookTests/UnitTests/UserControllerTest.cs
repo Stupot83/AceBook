@@ -81,18 +81,18 @@ namespace AceBookTests.UnitTests
             Assert.AreEqual(400, result.StatusCode);
         }
 
-        [Test]
-        public void AddFriendSuccessful()
-        {
-            var mockContext = new Mock<HttpContext>();
-            var mockSession = new MockSession();
-            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
-            mockContext.Setup(s => s.Session).Returns(mockSession);
-            controller.ControllerContext.HttpContext = mockContext.Object;
-            var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
+        //[Test]
+        //public void AddFriendSuccessful()
+        //{
+        //    var mockContext = new Mock<HttpContext>();
+        //    var mockSession = new MockSession();
+        //    mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+        //    mockContext.Setup(s => s.Session).Returns(mockSession);
+        //    controller.ControllerContext.HttpContext = mockContext.Object;
+        //    var result = controller.AddFriend("JosephTimothy@email.com") as OkResult;
             
-            Assert.AreEqual(200, result.StatusCode);
-        }
+        //    Assert.AreEqual(200, result.StatusCode);
+        //}
 
         [Test]
         public void AcceptFriendSuccessful()
