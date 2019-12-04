@@ -31,8 +31,7 @@ namespace AceBookTests.UnitTests
         {
             var result = controller.PostStatus(
                 userId,
-                message,
-                datePosted) as RedirectResult;
+                message) as RedirectResult;
             Assert.AreEqual("/", result.Url);
         }
 
@@ -41,8 +40,7 @@ namespace AceBookTests.UnitTests
         {
             var result = controller.PostStatus(
                 userId,
-                "",
-                datePosted) as BadRequestResult;
+                "") as BadRequestResult;
             Assert.AreEqual(400, result.StatusCode);
         }
     }
