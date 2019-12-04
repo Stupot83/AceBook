@@ -13,7 +13,19 @@ namespace AceBook.Helpers
 {
     public class DbHelper
     {
+        private const string TestDatabaseName = "AceBookDB_Test";
         private const string DatabaseName = "AceBookDB";
+        private static string DB
+        {
+            get
+            {
+                if (TestDbDetectorHelper.IsRunningTest)
+                {
+                    return TestDatabaseName;
+                }
+                return DatabaseName;
+            }
+        }
 
         public const int RequestPending = 0;
         public const int RequestAccepted = 1;
@@ -25,7 +37,7 @@ namespace AceBook.Helpers
 
             var client = new MongoClient(MongoUrl.Create(connectionString));
 
-            var database = client.GetDatabase(DatabaseName);
+            var database = client.GetDatabase(DB);
 
             return database.GetCollection<BsonDocument>(collectionName);
         }
@@ -36,7 +48,7 @@ namespace AceBook.Helpers
 
             var client = new MongoClient(MongoUrl.Create(connectionString));
 
-            var database = client.GetDatabase(DatabaseName);
+            var database = client.GetDatabase(DB);
 
             database.DropCollection(collectionName);
         }

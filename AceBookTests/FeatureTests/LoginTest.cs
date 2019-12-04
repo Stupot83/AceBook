@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Threading;
 
 namespace AceBookTests.FeatureTests
 {
@@ -29,13 +30,15 @@ namespace AceBookTests.FeatureTests
             var url = "https://localhost:5001/Account/Login";
 
             _driver.Navigate().GoToUrl(url);
-
             
-            _driver.Get("#email").SendKeys("a@a.com");
-            _driver.Get("#password").SendKeys("c");
+            _driver.Get("#email").SendKeys("tim@tim");
+            _driver.Get("#password").SendKeys("a");
             _driver.Get("#submit").Click();
 
-            Assert.That(_driver.PageSource, Does.Contain("Acebook"));
+            Thread.Sleep(20000);
+
+
+            Assert.That(_driver.PageSource, Does.Contain("AceBook"));
         }
 
         [Test]
@@ -45,8 +48,8 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("a@a.com");
-            _driver.Get("#password").SendKeys("c");
+            _driver.Get("#email").SendKeys("tim@tim");
+            _driver.Get("#password").SendKeys("a");
             _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;
@@ -61,8 +64,8 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("b@b.com");
-            _driver.Get("#password").SendKeys("a");
+            _driver.Get("#email").SendKeys("tim@tim");
+            _driver.Get("#password").SendKeys("b");
             _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;

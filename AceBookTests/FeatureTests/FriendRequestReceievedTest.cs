@@ -26,14 +26,14 @@ namespace AceBookTests.FeatureTests
             var url = "https://localhost:5001/Account/Login";
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.co.uk");
+            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.com");
             _driver.Get("#password").SendKeys("thelegend27");
             _driver.Get("#submit").Click();
         }
 
         private void CreateFriendRequest()
         {
-            DbHelper.AddFriend("tim@tim", "Susan.Longley@bglgroup.co.uk");
+            DbHelper.AddFriend("tim@tim", "Susan.Longley@bglgroup.com");
         }
 
         [TearDown]

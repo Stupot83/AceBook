@@ -31,7 +31,7 @@ namespace AceBookTests.FeatureTests
 
             _driver.Get("#firstName").SendKeys("Susan");
             _driver.Get("#lastName").SendKeys("Longley");
-            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.co.uk");
+            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.com");
             _driver.Get("#password").SendKeys("thelegend27");
             _driver.Get("#confirmPassword").SendKeys("thelegend27");
             _driver.Get("#phoneNumber").SendKeys("Susan");

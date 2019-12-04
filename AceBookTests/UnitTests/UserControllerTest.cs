@@ -29,7 +29,7 @@ namespace AceBookTests.UnitTests
         {
             controller = new UserController();
             DbHelper.ClearCollection("friend");
-            DbHelper.AddFriend("JosephTimothy@email.com", "Susan.Longley@bglgroup.co.uk");
+            DbHelper.AddFriend("JosephTimothy@email.com", "Susan.Longley@bglgroup.com");
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace AceBookTests.UnitTests
         {
             var mockContext = new Mock<HttpContext>();
             var mockSession = new MockSession();
-            mockSession.SetString("email", "Susan.Longley@bglgroup.co.uk");
+            mockSession.SetString("email", "Susan.Longley@bglgroup.com");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
             var userId = User.GetUserByEmail("JosephTimothy@email.com").Id.ToString();
@@ -103,7 +103,7 @@ namespace AceBookTests.UnitTests
             mockSession.SetString("email", "JosephTimothy@email.com");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
-            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
+            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
             Assert.AreEqual("/User/FriendRequest", result.Url);
@@ -117,7 +117,7 @@ namespace AceBookTests.UnitTests
             mockSession.SetString("email", "JosephTimothy@email.com");
             mockContext.Setup(s => s.Session).Returns(mockSession);
             controller.ControllerContext.HttpContext = mockContext.Object;
-            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.co.uk");
+            var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
             Assert.AreEqual("/User/FriendRequest", result.Url);
