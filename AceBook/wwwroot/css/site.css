@@ -5,8 +5,8 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     font-family: 'Noto Sans KR', sans-serif;
     min-width: 385px;
-    overflow: hidden;
     background-color: #F0F0F0;
+    overflow: hidden;
 }
 a.navbar-brand {
   white-space: normal;
@@ -189,3 +189,57 @@ h4 {
      border-bottom: 1px solid white;
      box-shadow: 0 1px 0 0 #F0F0F0;
 }
+
+.postBox {
+    max-width: 700px;
+    margin-left: 1%;
+}
+
+.postForm {
+    background-color: white;
+    margin-top: 30px;
+    max-width: 720px;
+    height: 101px;
+    border-radius: 5px;
+}
+
+.postBox1 {
+    max-width: 700px;
+    margin-left: 1%;
+    overflow: hidden;
+}
+
+.postForm1 {
+    background-color: white;
+    margin-top: 30px;
+    max-width: 720px;
+    height: 101px;
+    border-radius: 5px;
+}
+
+.postInfo {
+    margin-top: 7.1%;
+}
+
+.postContainer {
+    max-height: 100%;
+    overflow: scroll;
+}
+
+.profile-card {
+    border-radius: 5px;
+}
+
+.bottom-padding {
+    padding-bottom: 30px;
+}
+
+.profile-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.topMargin {
+    margin-top: 50px !important; 
+}
+

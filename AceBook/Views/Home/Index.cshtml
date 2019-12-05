@@ -26,19 +26,32 @@
 
 @if (email != null)
 {
-    <form method="post" action="post/PostStatus">
-        <input id="message" name="message" placeholder="wys, wagwan..." type="text" />
+<div class="postContainer">
+    <div class="container postForm">
+    <div class="col s12">
+    <form class="col s12 postBox" method="post" action="post/PostStatus">
+        <input class="" id="message" name="message" placeholder="Wys, wagwan, post here..." type="text" /><br />
         <input type="hidden" name="userId" id="userId" value="@userId" />
-        <input type ="submit" id="PostSubmit" />
+        <input class="btn waves-effect waves-light" type="submit" id="PostSubmit" placeholder="Post"/>
     </form>
 
-    <ul>
-        @foreach (var data in filteredPosts)
-        {
-        <li>@(data.UserId == userId ? "Me" : $"{data.User.FirstName} {data.User.LastName}") @data.Message @data.DatePosted</li>
+    </div>
+    </div>
+    @foreach (var data in ViewData["posts"] as List<Post>)
+    {
+    <div class="container postForm1">
+        <div class="col s12">
+            <ul class="col s12 postBox1">
+                <li>@data.Message </li>
+                <li class="postInfo">@($"{data.User.FirstName} {data.User.LastName}")  @data.DatePosted</li>
+            </ul>
+         </div>
+    </div>
+
         }
-    </ul>
-}
+    </div>
+    }
+
 else
 {
     <div class="text-center">
