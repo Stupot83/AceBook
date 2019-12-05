@@ -11,46 +11,50 @@
     <link rel="stylesheet" href="~/css/register.css" />
 }
 
-<div class="col-md-8 offset-md-2">
-    <h1 id="title">Profile</h1>
-    <form id="register" method="post">
-        <div class="form-group">
-            <label for="firstName">
-                First Name
-            </label>
-            <input id="firstName" name="firstName" type="text" value="@user.FirstName"/>
-        </div>
-        <div class="form-group">
-            <label for="lastName">
-                Last Name
-            </label>
-            <input id="lastName" name="lastName" type="text" value="@user.LastName"/>
-        </div>
-        <div class="form-group">
-            <label for="email">
-                Email
-            </label>
-            <input id="email" name="email" type="text" value="@user.Email"/>
-        </div>
-        <div class="form-group">
-            <label for="birthDate">
-                Date of Birth
-            </label>
-            <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@user.BirthDate" class="input-group datepicker"/>
-        </div>
-        <div class="form-group">
-            <label for="gender">
-                Gender
-            </label>
-            <input id="gender" name="gender" value="@user.Gender" type="text"/>
-        </div>
-        <div class="form-group">
-            <label for="phoneNumber">
-                Phone Number
-            </label>
-            <input id="phoneNumber" name="phoneNumber" value="@user.PhoneNumber" type="text"/>
-        </div>
-    </form>
+<div class="container row top-margin">
+    <div class="col s8 offset-s2 z-depth-6 card-panel profile-card">
+            <div class="col-md-8 offset-md-2 ">
+                <h5 class="profile-title "id="title">Profile</h5>
+                <form id="register" method="post">
+                    <div class="form-group input-section">
+                        <label for="firstName">
+                            First Name
+                        </label>
+                        <input id="firstName" name="firstName" type="text" value="@user.FirstName"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="lastName">
+                            Last Name
+                        </label>
+                        <input id="lastName" name="lastName" type="text" value="@user.LastName"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input id="email" name="email" type="text" value="@user.Email"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="birthDate">
+                            Date of Birth
+                        </label>
+                        <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@user.BirthDate" class="input-group datepicker"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="gender">
+                            Gender
+                        </label>
+                        <input id="gender" name="gender" value="@user.Gender" type="text"/>
+                    </div>
+                    <div class="form-group input-section bottom-padding">
+                        <label for="phoneNumber">
+                            Phone Number
+                        </label>
+                        <input id="phoneNumber" name="phoneNumber" value="@user.PhoneNumber" type="text"/>
+                    </div>
+                </form>
+            </div>
+     </div>
 </div>
 
 
