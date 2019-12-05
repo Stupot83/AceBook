@@ -12,6 +12,8 @@
     var profileUser = AceBook.Models.User.GetUserById(profileUserId.ToString());
 
     var outgoingRequests = Friend.GetOutgoingRequest(user.Email).Where(r => r.ReceiverEmail == profileUser.Email).ToList();
+    var incomingRequests = Friend.GetIncomingRequest(user.Email).Where(r => r.RequesterEmail == profileUser.Email).ToList();
+    var requests = outgoingRequests.Concat(incomingRequests).ToList();
 }
 
 @section Styles {
@@ -20,17 +22,13 @@
 
 <div class="col-md-8 offset-md-2">
     <h1 id="title">Profile</h1>
-
-
-    @if (userId != profileUserId)
-    {
-        @if (outgoingRequests.Count == 1)
+        @if (requests.Count == 1)
         {
-            @if (outgoingRequests.First().Status == 0)
+            @if (requests.First().Status == 0 )
             {
-                <p id="friendRequestSentMessage">Friend request sent</p>
+                <p id="friendRequestSentMessage">Friend request @(requests.First().RequesterEmail == user.Email ? "sent" : "received")</p>
             }
-            else if (outgoingRequests.First().Status == 1) 
+            else if (requests.First().Status == 1) 
             {
                 <p id="friendRequestAcceptedMessage">You are friends</p>
             }
@@ -40,11 +38,10 @@
             }
 
         }
-        else
+        else if (profileUser.Id != user.Id) 
         {
             <a class="btn" id="sendFriendRequestButton" asp-controller="User" asp-action="AddFriend" asp-route-receiverEmail="@profileUser.Email" asp-route-receiverId="@profileUserId">Send Friend Request</a>
         }
-    }
 
     <form id="register" method="post">
         <div class="form-group">
