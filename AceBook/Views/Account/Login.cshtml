@@ -3,25 +3,36 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 }
 
-    <div class="col-md-8 offset-md-2">
-        <div class="container">
-            <div class="row">
-                <form class="col-12 col-md-6 p-3" action="LoginUser" method='post'>
-                    <h5 class='p-4 text-center'>Login</h5>
-                    <div class="form-group row">
-                        <label class="col-4" for='email'>Email:</label>
-                        <input class="form-control col-8" id="email" name='email' type='text' required>
+    <div>
+        <div class="container login-card row">
+            <div class="col s8 offset-s2 z-depth-6 card-panel">
+                <form class="login-form" action="LoginUser" method='post'>
+                    <h5 class='text-center'>Login</h5>
+                    <div class="row margin input-section">
+                        <div class="input-field col s12">
+                            <input class="validate" id="email" name='email' type='text'>
+                            <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-4" for='password'>Password:</label>
-                        <input class="form-control col-8" id="password" name='password' type='password' required>
+                    <div class="row margin input-section">
+                        <div class="input-field col s12">
+                            <input id="password" name='password' type='password'>
+                            <label for="password">Password</label>
+                        </div>
                     </div>
-                    <div class="form-group d-flex mt-5 justify-content-center">
-                        <button class="btn btn-primary pl-3 pr-3" id="submit" type="submit">Login</button>
+                    <div class="row input-section">
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light" id="submit" type="submit">Login</button>
+                        </div>
                     </div>
+                    <div class="row text-center input-section">
+				        <div class="input-field col s12">
+					        <p class="margin medium-small">Not a member of AceBook? <a href="/user/register">Register Now!</a></p>
+				        </div>               
+			</div>
                 </form>
             </div>
         </div>

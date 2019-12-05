@@ -5,11 +5,16 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     font-family: 'Noto Sans KR', sans-serif;
     min-width: 385px;
+    overflow: hidden;
+    background-color: #F0F0F0;
 }
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* Provide sufficient contrast against white background */
@@ -73,4 +78,114 @@ body {
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+  text-align: right;
 }
+
+.navbar {
+  background-color: teal !important;
+
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+h4 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.img-fluid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 425px !important;
+}
+
+.login-card {
+    margin-top: 50px;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.login-form h5 {
+    margin-bottom: 40px;
+}
+
+.login-form label {
+    margin-bottom: 10px;
+}
+
+.input-section {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.register-card {
+    margin-top: 30px;
+}
+
+.register-form {
+    text-align: center;
+}
+
+.register-form label {
+    margin-bottom: 10px;
+}
+
+.register-form .row {
+    margin-bottom: 0px !important;
+}
+
+.register-button {
+    margin-bottom: 0px !important;
+}
+
+.search {
+    color: white;
+}
+
+#top-search .input-field .prefix {
+    width: 0rem !important;
+}
+
+#top-search .input-field .prefix.active {
+    color: white !important;
+}
+
+#top-search {
+    margin-bottom: 0 !important;
+    margin-left: 50px;
+}
+
+.autocomplete {
+    margin-bottom: 0!important;
+}
+
+.autocomplete.active {
+    color: white !important;
+}
+
+#top-search input.autocomplete {
+    font-size: 1rem !important;
+    margin-top: 10px;
+    color: white;
+}
+
+.footer-text {
+     margin-right: 50px;
+}
+
+#top-search .input-field .prefix ~ .autocomplete-content {
+    top: 63px !important;
+}
+
+#top-search .input-field input[type=text]:focus {
+     border-bottom: 1px solid white;
+     box-shadow: 0 1px 0 0 #F0F0F0;
+   }
