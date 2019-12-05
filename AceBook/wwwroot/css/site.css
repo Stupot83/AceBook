@@ -188,7 +188,7 @@ h4 {
 #top-search .input-field input[type=text]:focus {
      border-bottom: 1px solid white;
      box-shadow: 0 1px 0 0 #F0F0F0;
-   }
+}
 
 .postBox {
     max-width: 700px;
@@ -242,3 +242,4 @@ h4 {
 .topMargin {
     margin-top: 50px !important; 
 }
+

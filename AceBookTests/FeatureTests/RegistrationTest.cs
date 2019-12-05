@@ -29,15 +29,15 @@ namespace AceBookTests.FeatureTests
             
             _driver.Navigate().GoToUrl(url);
 
-            _driver.FindElement(By.CssSelector("#firstName")).SendKeys("Susan");
-            _driver.FindElement(By.CssSelector("#lastName")).SendKeys("Longley");
-            _driver.FindElement(By.CssSelector("#email")).SendKeys("Susan.Longley@bglgroup.co.uk");
-            _driver.FindElement(By.CssSelector("#password")).SendKeys("thelegend27");
-            _driver.FindElement(By.CssSelector("#confirmPassword")).SendKeys("thelegend27");
-            _driver.FindElement(By.CssSelector("#phoneNumber")).SendKeys("Susan");
-            _driver.FindElement(By.CssSelector("#birthDate")).SendKeys("11/11/11");
-            _driver.FindElement(By.CssSelector("#gender")).SendKeys("Susan");
-            _driver.FindElement(By.CssSelector("#submit")).Click();
+            _driver.Get("#firstName").SendKeys("Susan");
+            _driver.Get("#lastName").SendKeys("Longley");
+            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.co.uk");
+            _driver.Get("#password").SendKeys("thelegend27");
+            _driver.Get("#confirmPassword").SendKeys("thelegend27");
+            _driver.Get("#phoneNumber").SendKeys("Susan");
+            _driver.Get("#birthDate").SendKeys("11/11/11");
+            _driver.Get("#gender").SendKeys("Susan");
+            _driver.Get("#submit").Click();
             
             Assert.That(_driver.PageSource, Does.Contain("Acebook"));
         }

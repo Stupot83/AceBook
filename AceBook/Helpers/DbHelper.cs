@@ -118,8 +118,7 @@ namespace AceBook.Helpers
         {
             var collection = ConnectToDB("friend");
             return collection.Find(
-                Builders<BsonDocument>.Filter.Eq("receiverEmail", receiverEmail) &
-                Builders<BsonDocument>.Filter.Eq("status", RequestPending)).ToList();
+                Builders<BsonDocument>.Filter.Eq("receiverEmail", receiverEmail)).ToList();
         }
 
         public static List<BsonDocument> GetUserByName()

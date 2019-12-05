@@ -4,7 +4,25 @@
     <link rel="stylesheet" href="~/css/site.css" />
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
-}
+
+    List<string> friendUserIds = null;
+    List<Post> filteredPosts = new List<Post> { };
+
+    if (email != null)
+    {
+        friendUserIds = Friend.ListFriendIds(email);
+
+        foreach (Post post in ViewData["posts"] as List<Post>)
+        {
+            if (friendUserIds.Contains(post.UserId) || post.UserId == userId)
+            {
+                filteredPosts.Add(post);
+            }
+        }
+    }
+
+
+    }
 
 @if (email != null)
 {
@@ -16,6 +34,7 @@
         <input type="hidden" name="userId" id="userId" value="@userId" />
         <input class="btn waves-effect waves-light" type="submit" id="PostSubmit" placeholder="Post"/>
     </form>
+
     </div>
     </div>
     @foreach (var data in ViewData["posts"] as List<Post>)
@@ -28,6 +47,7 @@
             </ul>
          </div>
     </div>
+
         }
     </div>
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AceBook.Helpers;
 using MongoDB.Bson;
 
@@ -30,7 +31,7 @@ namespace AceBook.Models
 
         public static int FriendRequestCount(string receiverEmail)
         {
-            return GetIncomingRequest(receiverEmail).Count;
+            return GetIncomingRequest(receiverEmail).Where(r => r.Status == 0).ToList().Count;
         }
 
         public static List<Friend> GetOutgoingRequest(string requesterEmail)
@@ -67,6 +68,29 @@ namespace AceBook.Models
             }
 
             return list;
+        }
+
+        public static List<string> ListFriendIds(string email)
+        {
+            Console.WriteLine("Looking for requests relating to " + email);
+            var incomingRequests = GetIncomingRequest(email).Where(r => r.Status == 1 && r.ReceiverEmail == email).ToList();
+            var outgoingRequests = GetOutgoingRequest(email).Where(r => r.Status == 1 && r.RequesterEmail == email).ToList();
+
+            var friendIds = new List<string> { };
+
+            foreach (Friend request in incomingRequests)
+            {
+                var user = User.GetUserByEmail(request.RequesterEmail);
+                friendIds.Add(user.Id.ToString());
+            }
+
+            foreach (Friend request in outgoingRequests)
+            {
+                var user = User.GetUserByEmail(request.ReceiverEmail);
+                friendIds.Add(user.Id.ToString());
+            }
+
+            return friendIds;
         }
     }
 }

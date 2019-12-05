@@ -1,17 +1,49 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using AceBook.Models;
 @{
     ViewData["Title"] = "Register";
 
-    var userId = ViewData["userId"];
+    var userId = Context.Session.GetString("userId");
 
-    var user = AceBook.Models.User.GetUserById(userId.ToString());
+    var user = AceBook.Models.User.GetUserById(userId);
+
+    var profileUserId = ViewData["userId"].ToString();
+
+    var profileUser = AceBook.Models.User.GetUserById(profileUserId.ToString());
+
+    var outgoingRequests = Friend.GetOutgoingRequest(user.Email).Where(r => r.ReceiverEmail == profileUser.Email).ToList();
+    var incomingRequests = Friend.GetIncomingRequest(user.Email).Where(r => r.RequesterEmail == profileUser.Email).ToList();
+    var requests = outgoingRequests.Concat(incomingRequests).ToList();
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/register.css" />
 }
 
-<div class="container row">
+<div class="col-md-8 offset-md-2">
+    <h1 id="title">Profile</h1>
+        @if (requests.Count == 1)
+        {
+            @if (requests.First().Status == 0 )
+            {
+                <p id="friendRequestSentMessage">Friend request @(requests.First().RequesterEmail == user.Email ? "sent" : "received")</p>
+            }
+            else if (requests.First().Status == 1) 
+            {
+                <p id="friendRequestAcceptedMessage">You are friends</p>
+            }
+            else
+            {
+                <p id="friendRequestDeclinedMessage">This person does not want to be friends with you at the moment</p>
+            }
+
+        }
+        else if (profileUserId != userId) 
+        {
+            <a class="btn" id="sendFriendRequestButton" asp-controller="User" asp-action="AddFriend" asp-route-receiverEmail="@profileUser.Email" asp-route-receiverId="@profileUserId">Send Friend Request</a>
+        }
+
+    <div class="container row">
     <div class="col s8 offset-s2 z-depth-6 card-panel profile-card topMargin">
             <div class="col-md-8 offset-md-2 ">
                 <h5 class="profile-title "id="title">Profile</h5>
@@ -55,6 +87,7 @@
                 </form>
             </div>
      </div>
+
 </div>
 
 

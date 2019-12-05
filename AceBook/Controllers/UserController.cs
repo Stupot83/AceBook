@@ -55,14 +55,14 @@ namespace AceBook.Controllers
             return Redirect("/home");    
         }
 
-        [HttpPost]
-        public IActionResult AddFriend(string receiverEmail)
+        [HttpGet]
+        public IActionResult AddFriend(string receiverEmail, string receiverId)
         {
             var email = HttpContext.Session.GetString("email");
             DbHelper.AddFriend(email, receiverEmail);
             Console.Write(email);
 
-            return Ok();
+            return Redirect($"/User/Profile/{receiverId}");
         }
 
         [HttpGet]
