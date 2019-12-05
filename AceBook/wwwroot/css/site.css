@@ -239,6 +239,6 @@ h4 {
     text-align: center;
 }
 
-top-margin {
-    margin-top: 50px;
+.topMargin {
+    margin-top: 50px !important; 
 }
