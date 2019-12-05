@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AceBook.Helpers;
 using MongoDB.Bson;
 
@@ -30,7 +31,7 @@ namespace AceBook.Models
 
         public static int FriendRequestCount(string receiverEmail)
         {
-            return GetIncomingRequest(receiverEmail).Count;
+            return GetIncomingRequest(receiverEmail).Where(r => r.Status == 0).ToList().Count;
         }
 
         public static List<Friend> GetOutgoingRequest(string requesterEmail)
