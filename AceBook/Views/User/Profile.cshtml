@@ -38,7 +38,7 @@
             }
 
         }
-        else if (profileUser.Id != user.Id) 
+        else if (profileUserId != userId) 
         {
             <a class="btn" id="sendFriendRequestButton" asp-controller="User" asp-action="AddFriend" asp-route-receiverEmail="@profileUser.Email" asp-route-receiverId="@profileUserId">Send Friend Request</a>
         }

@@ -4,7 +4,25 @@
     <link rel="stylesheet" href="~/css/site.css" />
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
-}
+
+    List<string> friendUserIds = null;
+    List<Post> filteredPosts = new List<Post> { };
+
+    if (email != null)
+    {
+        friendUserIds = Friend.ListFriendIds(email);
+
+        foreach (Post post in ViewData["posts"] as List<Post>)
+        {
+            if (friendUserIds.Contains(post.UserId))
+            {
+                filteredPosts.Add(post);
+            }
+        }
+    }
+
+
+    }
 
 @if (email != null)
 {
@@ -15,7 +33,7 @@
     </form>
 
     <ul>
-        @foreach (var data in ViewData["posts"] as List<Post>)
+        @foreach (var data in filteredPosts)
         {
         <li>@($"{data.User.FirstName} {data.User.LastName}") @data.Message @data.DatePosted</li>
         }

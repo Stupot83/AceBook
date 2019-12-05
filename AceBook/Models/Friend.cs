@@ -69,5 +69,28 @@ namespace AceBook.Models
 
             return list;
         }
+
+        public static List<string> ListFriendIds(string email)
+        {
+            Console.WriteLine("Looking for requests relating to " + email);
+            var incomingRequests = GetIncomingRequest(email).Where(r => r.Status == 1 && r.ReceiverEmail == email).ToList();
+            var outgoingRequests = GetOutgoingRequest(email).Where(r => r.Status == 1 && r.RequesterEmail == email).ToList();
+
+            var friendIds = new List<string> { };
+
+            foreach (Friend request in incomingRequests)
+            {
+                var user = User.GetUserByEmail(request.RequesterEmail);
+                friendIds.Add(user.Id.ToString());
+            }
+
+            foreach (Friend request in outgoingRequests)
+            {
+                var user = User.GetUserByEmail(request.ReceiverEmail);
+                friendIds.Add(user.Id.ToString());
+            }
+
+            return friendIds;
+        }
     }
 }
