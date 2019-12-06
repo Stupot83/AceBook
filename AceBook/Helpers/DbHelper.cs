@@ -13,7 +13,7 @@ namespace AceBook.Helpers
 {
     public class DbHelper
     {
-        private const string DatabaseName = "AceBookDB_Test";
+        private const string DatabaseName = "AceBookDB";
 
         public const int RequestPending = 0;
         public const int RequestAccepted = 1;
