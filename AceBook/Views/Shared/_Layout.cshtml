@@ -4,6 +4,13 @@
 @{
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
+
+    User user = null;
+
+    if (userId != null)
+    {
+        user = AceBook.Models.User.GetUserById(userId);
+    }
 }
 
 <!DOCTYPE html>
@@ -13,11 +20,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AceBook</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/css/materialize.css">
     @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
+        <div class="navbar-fixed">
+        <ul id="profileDropdown" class="dropdown-content">
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" id="profile" asp-action="Profile" asp-route-userId="@userId">My Profile</a>
+            </li>
+            <li class="nav-item text-light">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+        </ul>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
@@ -31,12 +48,6 @@
 
                         @if (email != null)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" id="profile" asp-action="Profile" asp-route-userId="@userId">Profile</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" id="friendRequests" asp-action="FriendRequest">Friend Requests<span class="new badge">@Friend.FriendRequestCount(email)</span></a>
                             </li>
@@ -54,28 +65,32 @@
                         </li>
                         @if (email != null)
                         {
-                        <li class="row">
+                        <li class="nav-item">
                             <div class="col s12">
-                                <div class="row">
+                                <div class="row" id="top-search">
                                     <div class="input-field col s12">
-                                        <input type="text" id="autocomplete-input" class="autocomplete">
-                                        <label for="autocomplete-input">Find Friends</label>
-                                    </div>
+                                        <i class="material-icons prefix search">search</i>
+                                        <input id="autocomplete-input" type="text" class="autocomplete" placeholder="Find Friends">
+                                    </div>  
                                 </div>
-                            </div>
+                            </div> 
+                        </li>
+                        <li class="right">
+                            <a class="dropdown-trigger text-dark" href="#!" data-target="profileDropdown">@($"{user.FirstName} {user.LastName}")<i class="material-icons right">arrow_drop_down</i></a>
                         </li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
+         </div>   
     </header>
     <div class="container">
         @RenderBody()
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="footer-text">
             &copy; 2019 - AceBook - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -97,7 +112,9 @@
                         window.location.href = `/user/profile/${userId}`
                     }
 
-                    });
+                });
+
+                $(".dropdown-trigger").dropdown();
              });
     </script>
     @RenderSection("Scripts", required: false)

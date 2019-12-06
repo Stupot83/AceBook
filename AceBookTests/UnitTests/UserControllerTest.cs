@@ -14,7 +14,6 @@ namespace AceBookTests.UnitTests
     {
         private UserController controller;
 
-        string Id = "5de50e985606090f02e1e461";
         string firstName = "Joseph";
         string lastName = "Timothy";
         string email = "JosephTimothy@email.com";
@@ -37,18 +36,6 @@ namespace AceBookTests.UnitTests
         {
             var result = controller.Register() as ViewResult;
             Assert.AreEqual("Register", result.ViewName);
-        }
-
-        public void GetProfile()
-        {
-            var result = controller.Profile(Id) as ViewResult;
-            Assert.AreEqual("Profile", result.ViewName);
-        }
-
-        public void GetPrivacy()
-        {
-            var result = controller.Index() as ViewResult;
-            Assert.AreEqual("Index", result.ViewName);
         }
 
         [Test]
@@ -106,7 +93,7 @@ namespace AceBookTests.UnitTests
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual("/User/FriendRequest", result.Url);
+            Assert.AreEqual(200, result.StatusCode);
         }
 
         [Test]
@@ -120,7 +107,7 @@ namespace AceBookTests.UnitTests
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual("/User/FriendRequest", result.Url);
+            Assert.AreEqual(200, result.StatusCode);
         }
     }    
 }
