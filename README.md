@@ -6,20 +6,22 @@
 
 # AceBook
 
+[Try AceBook](https://acebook.makers-project.xyz)
+
 ## User Stories
  - [x] (1) Sign Up
  - [x] (2) Log In
- - [ ] (3) Log Out
+ - [x] (3) Log Out
  - [ ] (4) List Users
- - [ ] (5) Send Friend Request
- - [ ] (6) Respond to Friend Request
+ - [x] (5) Send Friend Request
+ - [x] (6) Respond to Friend Request
  - [x] (7) View Feed
- - [ ] (8) Only Friends can see Details
- - [ ] (9) Securing User Data
- - [ ] (10) Uploading User Profile Pic
+ - [x] (8) Only Friends can see Details
+ - [x] (9) Securing User Data
+ - [x] (10) Uploading User Profile Pic
  - [x] (11) Posting to Feed
- - [ ] (12) User Registration Confirmation Email
- - [ ] (13) Notification of Incoming Friend Request
+ - [x] (12) User Registration Confirmation Email
+ - [x] (13) Notification of Incoming Friend Request
  - [ ] (14) Notification of Status Change to Outgoing Friend Request
  - [ ] (15) Posting Images to Feed
  - [ ] (16) Responsive App

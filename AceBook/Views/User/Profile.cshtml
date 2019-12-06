@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @using AceBook.Models;
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Profile";
 
     var userId = Context.Session.GetString("userId");
 
@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="~/css/register.css" />
 }
 
-<div class="col-md-8 offset-md-2">
-    <h1 id="title">Profile</h1>
+<div class="col-md-8 offset-md-2 ">
+    <div class="friend-request">
         @if (requests.Count == 1)
         {
             @if (requests.First().Status == 0 )
@@ -42,45 +42,54 @@
         {
             <a class="btn" id="sendFriendRequestButton" asp-controller="User" asp-action="AddFriend" asp-route-receiverEmail="@profileUser.Email" asp-route-receiverId="@profileUserId">Send Friend Request</a>
         }
+    </div>
 
-    <form id="register" method="post">
-        <div class="form-group">
-            <label for="firstName">
-                First Name
-            </label>
-            <input id="firstName" name="firstName" type="text" value="@profileUser.FirstName"/>
-        </div>
-        <div class="form-group">
-            <label for="lastName">
-                Last Name
-            </label>
-            <input id="lastName" name="lastName" type="text" value="@profileUser.LastName"/>
-        </div>
-        <div class="form-group">
-            <label for="email">
-                Email
-            </label>
-            <input id="email" name="email" type="text" value="@profileUser.Email"/>
-        </div>
-        <div class="form-group">
-            <label for="birthDate">
-                Date of Birth
-            </label>
-            <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@profileUser.BirthDate" class="input-group datepicker"/>
-        </div>
-        <div class="form-group">
-            <label for="gender">
-                Gender
-            </label>
-            <input id="gender" name="gender" value="@profileUser.Gender" type="text"/>
-        </div>
-        <div class="form-group">
-            <label for="phoneNumber">
-                Phone Number
-            </label>
-            <input id="phoneNumber" name="phoneNumber" value="@profileUser.PhoneNumber" type="text"/>
-        </div>
-    </form>
+    <div class="container row">
+    <div class="col s8 offset-s2 z-depth-6 card-panel profile-card topMargin">
+            <div class="col-md-8 offset-md-2 ">
+                <h5 class="profile-title "id="title">Profile</h5>
+                <form id="register" method="post">
+                    <div class="form-group input-section">
+                        <label for="firstName">
+                            First Name
+                        </label>
+                        <input id="firstName" name="firstName" type="text" value="@profileUser.FirstName"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="lastName">
+                            Last Name
+                        </label>
+                        <input id="lastName" name="lastName" type="text" value="@profileUser.LastName"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input id="email" name="email" type="text" value="@profileUser.Email"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="birthDate">
+                            Date of Birth
+                        </label>
+                        <input id="birthDate" autocomplete="off" name="birthDate" type="text" value="@profileUser.BirthDate" class="input-group datepicker"/>
+                    </div>
+                    <div class="form-group input-section">
+                        <label for="gender">
+                            Gender
+                        </label>
+                        <input id="gender" name="gender" value="@profileUser.Gender" type="text"/>
+                    </div>
+                    <div class="form-group input-section bottom-padding">
+                        <label for="phoneNumber">
+                            Phone Number
+                        </label>
+                        <input id="phoneNumber" name="phoneNumber" value="@profileUser.PhoneNumber" type="text"/>
+                    </div>
+                </form>
+            </div>
+     </div>
+    </div>
+
 </div>
 
 

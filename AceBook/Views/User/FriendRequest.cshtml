@@ -9,8 +9,8 @@
 
     var requests = Friend.GetIncomingRequest(email).Where(r => r.Status == 0).ToList();
 }
-
-<h1>Friend Requests</h1>
+<div class="postInfo centered">
+<h4>Friend Requests</h4>
 
 @if (requests.Count > 0)
 {
@@ -32,3 +32,5 @@ else
 {
     <p id="noRequestsBoss">Nobody wants to be mates with you at the moment 🤒</p>
 }
+
+</div>
