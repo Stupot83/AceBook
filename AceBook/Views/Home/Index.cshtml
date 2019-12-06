@@ -1,15 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using AceBook.Models;
+
 @{
     ViewData["Title"] = "Home Page";
     <link rel="stylesheet" href="~/css/site.css" />
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
 
+    User user = null;
+
     List<string> friendUserIds = null;
     List<Post> filteredPosts = new List<Post> { };
 
     if (email != null)
     {
+        user = AceBook.Models.User.GetUserById(userId);
         friendUserIds = Friend.ListFriendIds(email);
 
         foreach (Post post in ViewData["posts"] as List<Post>)
