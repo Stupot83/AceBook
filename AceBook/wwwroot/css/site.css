@@ -229,14 +229,8 @@ h4 {
     margin-top: 20px !important; 
 }
 
-.friend-request {
-    margin-top: 20px !important; 
-    text-align: center;
-}
-
 .post-button-text-colour {
     color: white !important;
-
 }
 
 .centered {
@@ -284,4 +278,25 @@ h4 {
 
 .image-upload {
     margin-top: 15px;
+}
+.friend-request {
+    margin-top: 20px !important; 
+    text-align: center;
+}
+
+.post-button-text-colour {
+    color: white !important;
+
+}
+
+.centered {
+    text-align: center;
+}
+
+.left-align {
+    text-align: left;
+}
+
+#PostSubmit {
+  color: white;
 }
