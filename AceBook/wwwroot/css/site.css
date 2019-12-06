@@ -260,3 +260,7 @@ h4 {
 .left-align {
     text-align: left;
 }
+
+#PostSubmit {
+  color: white;
+}
