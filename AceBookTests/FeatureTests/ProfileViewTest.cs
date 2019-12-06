@@ -26,10 +26,8 @@ namespace AceBookTests.FeatureTests
 
             _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
             _driver.Get("#password").SendKeys(UserRegistrationHelper.password);
-            _driver.Get("#submit").Click();
-            Thread.Sleep(10000);
-            _driver.Get(".dropdownTrigger").Click();
-            Thread.Sleep(10000);
+            _driver.Get("#submit").Click();            
+            _driver.Get(".dropdown-trigger").Click();            
             _driver.Get("#profile").Click();
         }
 
