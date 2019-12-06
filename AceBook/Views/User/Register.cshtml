@@ -10,7 +10,7 @@
 <div>
 <div class="col s8 offset-s2 register-card row">
     <div class="col s12 z-depth-6 card-panel">
-        <form class="col s12 register-form" id="register" method="post">
+        <form class="col s12 register-form" id="register" method="post" enctype='multipart/form-data'>
             <h5 class="text-center" id="title">Register</h5>
             <div class="row margin input-section">
                 <div class="input-field col s5">
@@ -56,6 +56,8 @@
                     <label for="gender" class="center-align">Gender</label>
                 </div>
             </div>
+
+            <input type="file" name="profilePicture" id="profilePicture" />
 
             <div class="row margin input-section">
                 <div class="input-field register-button col s12">

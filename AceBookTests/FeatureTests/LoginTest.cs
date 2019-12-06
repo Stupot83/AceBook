@@ -15,6 +15,7 @@ namespace AceBookTests.FeatureTests
         public void Init()
         {
             _driver = new ChromeDriver();
+            UserRegistrationHelper.ClearUsersAndRegister();
         }
 
         [TearDown]
@@ -31,12 +32,9 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
             
-            _driver.Get("#email").SendKeys("tim@tim");
-            _driver.Get("#password").SendKeys("a");
+            _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
+            _driver.Get("#password").SendKeys("$upa$ecret");
             _driver.Get("#submit").Click();
-
-            Thread.Sleep(20000);
-
 
             Assert.That(_driver.PageSource, Does.Contain("AceBook"));
         }
@@ -48,8 +46,8 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("tim@tim");
-            _driver.Get("#password").SendKeys("a");
+            _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
+            _driver.Get("#password").SendKeys("$upa$ecret");
             _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;
@@ -64,8 +62,8 @@ namespace AceBookTests.FeatureTests
 
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("tim@tim");
-            _driver.Get("#password").SendKeys("b");
+            _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
+            _driver.Get("#password").SendKeys("wrongpassword");
             _driver.Get("#submit").Click();
 
             var expectedUrl = _driver.Url;

@@ -17,6 +17,7 @@ namespace AceBookTests.UnitTests
         string phoneNumber = "1234567890";
         string birthDate = "27/06/2001";
         string gender = "Frube";
+        string image = "img";
 
         [SetUp]
         public void TestSetup()
@@ -86,7 +87,7 @@ namespace AceBookTests.UnitTests
         [Category("registration")]
         public void RegistersAUser()
         {
-            User newUser = User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
+            User newUser = User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender, image);
             Assert.That(newUser, Is.InstanceOf<User>());
         }
 
@@ -95,7 +96,7 @@ namespace AceBookTests.UnitTests
         {
             string notConfirmPassword = "jdsdfakdsksdaj;dsafj;";
             Assert.That(() => {
-                User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender); }, 
+                User.Register(firstName, lastName, email, password, notConfirmPassword, phoneNumber, birthDate, gender, image); }, 
                 Throws.TypeOf<Exception>());
         }
     }

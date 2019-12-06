@@ -6,6 +6,10 @@ using AceBook.Helpers;
 using AceBook.Models;
 using Microsoft.AspNetCore.Session;
 using Moq;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Text;
 
 namespace AceBookTests.UnitTests
 {
@@ -13,6 +17,36 @@ namespace AceBookTests.UnitTests
     public class UserControllerTest
     {
         private UserController controller;
+
+        public class File : IFormFile
+        {
+            public string ContentDisposition => throw new System.NotImplementedException();
+
+            public string ContentType => throw new System.NotImplementedException();
+
+            public string FileName => throw new System.NotImplementedException();
+
+            public IHeaderDictionary Headers => throw new System.NotImplementedException();
+
+            public long Length => throw new System.NotImplementedException();
+
+            public string Name => throw new System.NotImplementedException();
+
+            public void CopyTo(Stream target)
+            {
+                target.Write(Encoding.ASCII.GetBytes("someString"));
+            }
+
+            public Task CopyToAsync(Stream target, CancellationToken cancellationToken = default)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public Stream OpenReadStream()
+            {
+                throw new System.NotImplementedException();
+            }
+        }
 
         string firstName = "Joseph";
         string lastName = "Timothy";
@@ -22,6 +56,7 @@ namespace AceBookTests.UnitTests
         string phoneNumber = "1234567890";
         string birthDate = "27/06/2001";
         string gender = "Frube";
+        IFormFile image = new File();
 
         [SetUp]
         public void TestSetup()
@@ -49,7 +84,8 @@ namespace AceBookTests.UnitTests
                 confirmPassword,
                 phoneNumber,
                 birthDate,
-                gender) as RedirectResult;
+                gender,
+                image) as RedirectResult;
             Assert.AreEqual("/home", result.Url);
         }
 
@@ -64,7 +100,8 @@ namespace AceBookTests.UnitTests
                 "non matching password",
                 phoneNumber,
                 birthDate,
-                gender) as BadRequestResult;
+                gender,
+                image) as BadRequestResult;
             Assert.AreEqual(400, result.StatusCode);
         }
 
@@ -93,7 +130,7 @@ namespace AceBookTests.UnitTests
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.AcceptFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.That(result.Url, Does.Contain("User/FriendRequest"));
         }
 
         [Test]
@@ -107,7 +144,7 @@ namespace AceBookTests.UnitTests
             var friendRequests = Friend.GetIncomingRequest("Susan.Longley@bglgroup.com");
             var result = controller.DeclineFriend(friendRequests[0].Id.ToString()) as RedirectResult;
 
-            Assert.AreEqual(200, result.StatusCode);
+            Assert.That(result.Url, Does.Contain("User/FriendRequest"));
         }
     }    
 }

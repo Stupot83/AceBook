@@ -53,7 +53,7 @@ namespace AceBook.Helpers
             database.DropCollection(collectionName);
         }
 
-        public static void RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber, string birthDate, string gender)
+        public static void RegisterUser(string firstName, string lastName, string email, string password, string phoneNumber, string birthDate, string gender, string image)
         {
             var collection = ConnectToDB("user");
             var document = new BsonDocument
@@ -64,7 +64,8 @@ namespace AceBook.Helpers
                 { "password", PasswordHasher.Hash(password) },
                 { "phoneNumber", phoneNumber },
                 { "birthDate", birthDate },
-                { "gender", gender }
+                { "gender", gender },
+                { "image", image }
             };
 
             collection.InsertOneAsync(document);

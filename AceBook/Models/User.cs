@@ -17,13 +17,14 @@ namespace AceBook.Models
         public string PhoneNumber { get; set; }
         public string BirthDate { get; set; }
         public string Gender { get; set; }
+        public string Image { get; set; }
         
-        public static User Register(string firstName, string lastName, string email, string password, string confirmPassword, string phoneNumber, string birthDate, string gender)
+        public static User Register(string firstName, string lastName, string email, string password, string confirmPassword, string phoneNumber, string birthDate, string gender, string image)
         { 
             if (CheckPassword(password, confirmPassword))
             {
                 EmailHelper.SendEmail(email);
-                DbHelper.RegisterUser(firstName, lastName, email, password, phoneNumber, birthDate, gender);
+                DbHelper.RegisterUser(firstName, lastName, email, password, phoneNumber, birthDate, gender, image);
                 return new User
                 {
                     FirstName = firstName,
@@ -53,7 +54,8 @@ namespace AceBook.Models
                     Email = (string) data.GetValue("email"),
                     PhoneNumber = (string) data.GetValue("phoneNumber"),
                     BirthDate = (string) data.GetValue("birthDate"),
-                    Gender = (string) data.GetValue("gender")
+                    Gender = (string) data.GetValue("gender"),
+                    Image = (string) data.GetValue("image")
                 };
             }
             
@@ -70,6 +72,7 @@ namespace AceBook.Models
                 {
                     FirstName = user.GetValue("firstName").ToString(),
                     LastName = user.GetValue("lastName").ToString(),
+                    Image = user.GetValue("image").ToString(),
                     Id = (BsonObjectId) user.GetValue("_id")
                 });
 
@@ -102,7 +105,8 @@ namespace AceBook.Models
                 Email = (string)data.GetValue("email"),
                 PhoneNumber = (string)data.GetValue("phoneNumber"),
                 BirthDate = (string)data.GetValue("birthDate"),
-                Gender = (string)data.GetValue("gender")
+                Gender = (string)data.GetValue("gender"),
+                Image = (string)data.GetValue("image")
             };            
         }
 
@@ -117,7 +121,8 @@ namespace AceBook.Models
                 Email = (string)data.GetValue("email"),
                 PhoneNumber = (string)data.GetValue("phoneNumber"),
                 BirthDate = (string)data.GetValue("birthDate"),
-                Gender = (string)data.GetValue("gender")
+                Gender = (string)data.GetValue("gender"),
+                Image = (string)data.GetValue("image")
             };
         }
 

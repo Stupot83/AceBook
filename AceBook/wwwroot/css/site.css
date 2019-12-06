@@ -240,6 +240,23 @@ h4 {
 }
 
 .topMargin {
-    margin-top: 50px !important; 
+    margin-top: 20px !important; 
 }
 
+.friend-request {
+    margin-top: 20px !important; 
+    text-align: center;
+}
+
+.post-button-text-colour {
+    color: white !important;
+
+}
+
+.centered {
+    text-align: center;
+}
+
+.left-align {
+    text-align: left;
+}

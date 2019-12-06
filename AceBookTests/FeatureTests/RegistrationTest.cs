@@ -1,6 +1,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using System.Threading;
+using AceBook.Helpers;
 
 namespace AceBookTests.FeatureTests
 {
@@ -13,6 +16,7 @@ namespace AceBookTests.FeatureTests
         public void Init()
         {
             _driver = new ChromeDriver();
+            DbHelper.ClearCollection("user");
         }
 
         [TearDown]
@@ -34,9 +38,17 @@ namespace AceBookTests.FeatureTests
             _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.com");
             _driver.Get("#password").SendKeys("thelegend27");
             _driver.Get("#confirmPassword").SendKeys("thelegend27");
-            _driver.Get("#phoneNumber").SendKeys("Susan");
-            _driver.Get("#birthDate").SendKeys("11/11/11");
-            _driver.Get("#gender").SendKeys("Susan");
+            _driver.Get("#phoneNumber").SendKeys("071234567890");
+            _driver.Get("#birthDate").SendKeys("11/11/11");            
+            _driver.Get("#gender").SendKeys("Female");
+
+            IWebElement imgbtn = _driver.Get("#profilePicture");
+            Actions actions = new Actions(_driver);
+            actions = actions.MoveToElement(imgbtn);
+            actions = actions.Click();
+            actions.Build().Perform();
+            Thread.Sleep(15000);
+
             _driver.Get("#submit").Click();
             
             Assert.That(_driver.PageSource, Does.Contain("Acebook"));

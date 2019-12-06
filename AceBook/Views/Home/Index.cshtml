@@ -1,15 +1,20 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using AceBook.Models;
+
 @{
     ViewData["Title"] = "Home Page";
     <link rel="stylesheet" href="~/css/site.css" />
     string email = Context.Session.GetString("email");
     string userId = Context.Session.GetString("userId");
 
+    User user = null;
+
     List<string> friendUserIds = null;
     List<Post> filteredPosts = new List<Post> { };
 
     if (email != null)
     {
+        user = AceBook.Models.User.GetUserById(userId);
         friendUserIds = Friend.ListFriendIds(email);
 
         foreach (Post post in ViewData["posts"] as List<Post>)
@@ -32,12 +37,12 @@
     <form class="col s12 postBox" method="post" action="post/PostStatus">
         <input class="" id="message" name="message" placeholder="Wys, wagwan, post here..." type="text" /><br />
         <input type="hidden" name="userId" id="userId" value="@userId" />
-        <input class="btn waves-effect waves-light" type="submit" id="PostSubmit" placeholder="Post"/>
+        <input class="btn waves-effect waves-light post-button-text-colour" type="submit" id="PostSubmit" value="Post"/>
     </form>
 
     </div>
     </div>
-    @foreach (var data in ViewData["posts"] as List<Post>)
+    @foreach (var data in filteredPosts as List<Post>)
     {
     <div class="container postForm1">
         <div class="col s12">

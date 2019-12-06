@@ -18,9 +18,10 @@ namespace AceBookTests.FeatureTests
         public void Init()
         {
             DbHelper.ClearCollection("friend");
+            UserRegistrationHelper.ClearUsersAndRegister();
             _driver = new ChromeDriver();            
             Login();
-            var user = User.GetUserByEmail("tim@tim");
+            var user = User.GetUserByEmail("tim.salva@testMail.com");
             _driver.Navigate().GoToUrl($"https://localhost:5001/User/Profile/{user.Id.ToString()}");
             Console.WriteLine($"https://localhost:5001/User/Profile/{user.Id.ToString()}");
         }
@@ -30,8 +31,8 @@ namespace AceBookTests.FeatureTests
             var url = "https://localhost:5001/Account/Login";
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.com");
-            _driver.Get("#password").SendKeys("thelegend27");
+            _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
+            _driver.Get("#password").SendKeys(UserRegistrationHelper.password);
             _driver.Get("#submit").Click();
         }
 
@@ -54,7 +55,7 @@ namespace AceBookTests.FeatureTests
         public void FriendRequestAcceptedText()
         {
             _driver.Get("#sendFriendRequestButton").Click();
-            var request = Friend.GetOutgoingRequest("Susan.Longley@bglgroup.com")[0];
+            var request = Friend.GetOutgoingRequest("Susan.Longley@testMail.com")[0];
             DbHelper.SetFriendRequestStatus(request.Id, DbHelper.RequestAccepted);
             _driver.Navigate().Refresh();
             Thread.Sleep(2000);
@@ -66,7 +67,7 @@ namespace AceBookTests.FeatureTests
         public void FriendRequestDeclinedText()
         {
             _driver.Get("#sendFriendRequestButton").Click();
-            var request = Friend.GetOutgoingRequest("Susan.Longley@bglgroup.com")[0];
+            var request = Friend.GetOutgoingRequest("Susan.Longley@testMail.com")[0];
             DbHelper.SetFriendRequestStatus(request.Id, DbHelper.RequestDeclined);
             Thread.Sleep(2000);
             _driver.Navigate().Refresh();

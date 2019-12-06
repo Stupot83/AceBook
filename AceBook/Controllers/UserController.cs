@@ -40,19 +40,20 @@ namespace AceBook.Controllers
             string confirmPassword,
             string phoneNumber,
             string birthDate,
-            string gender)
+            string gender,
+            IFormFile profilePicture)
         {
             try
             {
-                Models.User newUser = Models.User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender);
-                Console.WriteLine(newUser.Email);
-                Console.WriteLine("Hurray!");
+                var image = ImageUploadHelper.ImageToBase64(profilePicture);
+                User newUser = Models.User.Register(firstName, lastName, email, password, confirmPassword, phoneNumber, birthDate, gender, image);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.StackTrace);
                 return BadRequest();
             }
-            return Redirect("/home");    
+            return Redirect("/home");
         }
 
         [HttpGet]

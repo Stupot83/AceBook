@@ -26,14 +26,14 @@ namespace AceBookTests.FeatureTests
             var url = "https://localhost:5001/Account/Login";
             _driver.Navigate().GoToUrl(url);
 
-            _driver.Get("#email").SendKeys("Susan.Longley@bglgroup.com");
-            _driver.Get("#password").SendKeys("thelegend27");
+            _driver.Get("#email").SendKeys("Susan.Longley@testMail.com");
+            _driver.Get("#password").SendKeys(UserRegistrationHelper.password);
             _driver.Get("#submit").Click();
         }
 
         private void CreateFriendRequest()
         {
-            DbHelper.AddFriend("tim@tim", "Susan.Longley@bglgroup.com");
+            DbHelper.AddFriend("tim.salva@testMail.com", "Susan.Longley@testMail.com");
         }
 
         [TearDown]
@@ -53,7 +53,7 @@ namespace AceBookTests.FeatureTests
         public void FriendRequestIsPopulated()
         {
             IWebElement requesterEmail = _driver.Get(".friendRequestEmail");
-            Assert.That(requesterEmail.Text, Is.EqualTo("tim@tim"));
+            Assert.That(requesterEmail.Text, Is.EqualTo("tim.salva@testMail.com"));
         }
 
         [Test]

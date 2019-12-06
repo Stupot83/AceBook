@@ -7,7 +7,6 @@ namespace AceBook
     {
         public static void Main(string[] args)
         {
-            Models.User.GetAll();
             CreateHostBuilder(args).Build().Run();
         }
 
