@@ -31,23 +31,44 @@
 
 @if (email != null)
 {
-<div class="postContainer">
-    <div class="container postForm">
-    <div class="col s12">
-    <form class="col s12 postBox" method="post" action="post/PostStatus">
-        <input class="" id="message" name="message" placeholder="Wys, wagwan, post here..." type="text" /><br />
-        <input type="hidden" name="userId" id="userId" value="@userId" />
-        <input class="btn waves-effect waves-light post-button-text-colour" type="submit" id="PostSubmit" value="Post"/>
-    </form>
+    <div class="postContainer">
+    <div id="profile-page-header" class="card profile-panel">
+                <div class="card-panel profile-top">                
+                </div>
+                <div class="card-content profile-body">
+                  <div class="row profile-content">
+                    <div class="col s2">                        
+                        <img src="@user.Image" alt="profile image" class="circle z-depth-2 responsive-img activator">                    
+                    </div>
+                    <div class="col s4 center-align profile-bio">                        
+                        <h6 class="card-title grey-text text-darken-4">@user.FirstName @user.LastName</h6>                        
+                    </div>
+                    <div class="col s4 center-align profile-bio">
+                        <h6 class="card-title grey-text">@user.Email</h6>   
+                    </div>              
+                  </div>
+                </div>
+            </div>
 
+    <div class="profile-page-content postForm">
+        <div class="card-panel">
+            <div class="col s12">
+            <form class="col s12" method="post" action="post/PostStatus">
+                <input class="" id="message" name="message" placeholder="Wys, wagwan, post here..." type="text" /><br />
+                <input type="hidden" name="userId" id="userId" value="@userId" />
+                <input class="postButton btn waves-effect waves-light post-button-text-colour" type="submit" id="PostSubmit" value="Post"/>
+            </form>
+        </div>
     </div>
-    </div>
+
     @foreach (var data in filteredPosts as List<Post>)
     {
-    <div class="container postForm1">
-        <div class="col s12">
-            <ul class="col s12 postBox1">
-                <li>@data.Message </li>
+    <div id="profile-page-header" class="card profile-panel">
+        <div class="card-panel profile-top">                
+                </div>
+        <div class="card-content col s12">
+            <ul class="col s12 postForm2">
+                <li class="message">@data.Message</li>
                 <li class="postInfo">@($"{data.User.FirstName} {data.User.LastName}")  @data.DatePosted</li>
             </ul>
          </div>
@@ -55,6 +76,7 @@
 
         }
     </div>
+         </div>
     }
 
 else
