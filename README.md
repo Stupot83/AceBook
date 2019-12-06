@@ -12,7 +12,7 @@
  - [x] (1) Sign Up
  - [x] (2) Log In
  - [x] (3) Log Out
- - [ ] (4) List Users
+ - [x] (4) List Users
  - [x] (5) Send Friend Request
  - [x] (6) Respond to Friend Request
  - [x] (7) View Feed
@@ -22,7 +22,7 @@
  - [x] (11) Posting to Feed
  - [x] (12) User Registration Confirmation Email
  - [x] (13) Notification of Incoming Friend Request
- - [ ] (14) Notification of Status Change to Outgoing Friend Request
+ - [x] (14) Notification of Status Change to Outgoing Friend Request
  - [ ] (15) Posting Images to Feed
  - [ ] (16) Responsive App
  - [ ] (17) Chat with Friends
