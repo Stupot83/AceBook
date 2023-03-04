@@ -14,7 +14,7 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="78.0.3904.10500" />
     <PackageReference Include="FakeHttpContext" Version="0.4.1" />
     <PackageReference Include="Moq" Version="4.13.1" />
-    <PackageReference Include="MongoDB.Driver" Version="2.9.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.19.0" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.9.3" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.3" />
     <PackageReference Include="Moq" Version="4.13.1" />
